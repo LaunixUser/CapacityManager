@@ -1,0 +1,93 @@
+<component name="ArtifactManager">
+  <artifact name="CapacityManager:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CapacityManager_jar</output-path>
+    <root id="root">
+      <element id="archive" name="CapacityManager.jar">
+        <element id="module-test-output" name="CapacityManager.test" />
+        <element id="module-output" name="CapacityManager.main" />
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/LaunixTools.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/commons-lang3-3.5.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../LaunixTools/out/artifacts/LaunixTools_jar/hamcrest-core-1.3.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/pdfbox-2.0.17.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../LaunixTools/out/artifacts/LaunixTools_jar/Options.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/poi-ooxml-schemas-4.1.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/maven-plugin-registry-2.2.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/hamcrest-core-1.3.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/maven-project-2.2.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/poi-ooxml-4.1.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/curvesapi-1.06.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/plexus-interpolation-1.11.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/junit-4.12.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/commons-math3-3.6.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../LaunixTools/out/artifacts/LaunixTools_jar/junit-4.12.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/plexus-container-default-1.0-alpha-9-stable-1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/maven-settings-2.2.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/plexus-utils-3.0.20.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../LaunixTools/out/artifacts/LaunixTools_jar/LaunixTools.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/poi-ooxml-schemas-4.1.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/maven-model-2.2.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../LaunixTools/out/artifacts/LaunixTools_jar/poi-4.1.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../LaunixTools/out/artifacts/LaunixTools_jar/curvesapi-1.06.jar" />
+      <element id="library" level="project" name="Gradle: org.hamcrest:hamcrest-core:1.3" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/Table.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/commons-logging-1.2.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../LaunixTools/out/artifacts/LaunixTools_jar/slf4j-api-1.7.25.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../LaunixTools/out/artifacts/LaunixTools_jar/commons-math3-3.6.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/easytable-0.4.2.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/LaunixTools.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/velocity-engine-core-2.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/poi-ooxml-4.1.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../LaunixTools/out/artifacts/LaunixTools_jar/commons-codec-1.13.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/commons-lang3-3.5.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/xmlbeans-3.1.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/slf4j-api-1.7.25.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/commons-math3-3.6.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../LaunixTools/out/artifacts/LaunixTools_jar/commons-lang3-3.5.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/poi-4.1.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/ProcessFramework.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/commons-compress-1.19.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/Table.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/maven-plugin-api-2.2.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/commons-codec-1.13.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/backport-util-concurrent-3.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/Options.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../LaunixTools/out/artifacts/LaunixTools_jar/jdom2-2.0.6.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../LaunixTools/out/artifacts/LaunixTools_jar/ooxml-schemas-1.4.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../LaunixTools/out/artifacts/LaunixTools_jar/commons-collections4-4.4.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/maven-artifact-2.2.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/ooxml-schemas-1.4.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/Options.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/curvesapi-1.06.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/hamcrest-core-1.3.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/classworlds-1.1-alpha-2.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/commons-collections4-4.4.jar" />
+      <element id="library" level="project" name="Gradle: junit:junit:4.12" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/junit-3.8.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../LaunixTools/out/artifacts/LaunixTools_jar/commons-compress-1.19.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/jdom2-2.0.6.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/plexus-cipher-1.4.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../LaunixTools/out/artifacts/LaunixTools_jar/poi-ooxml-schemas-4.1.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/xmlbeans-3.1.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../LaunixTools/out/artifacts/LaunixTools_jar/xmlbeans-3.1.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/slf4j-api-1.7.25.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/maven-gpg-plugin-1.6.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/commons-codec-1.13.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/jdom2-2.0.6.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../LaunixTools/out/artifacts/LaunixTools_jar/velocity-engine-core-2.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/plexus-sec-dispatcher-1.4.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/junit-4.12.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/velocity-engine-core-2.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/fontbox-2.0.17.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/ooxml-schemas-1.4.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/commons-compress-1.19.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../LaunixTools/out/artifacts/LaunixTools_jar/poi-ooxml-4.1.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/poi-4.1.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/wagon-provider-api-1.0-beta-6.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Table/out/artifacts/Table_jar/commons-collections4-4.4.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/maven-repository-metadata-2.2.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/maven-artifact-manager-2.2.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ProcessFramework/out/artifacts/ProcessFramework_jar/maven-profile-2.2.1.jar" />
+    </root>
+  </artifact>
+</component>
