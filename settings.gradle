@@ -1,5 +1,3 @@
 rootProject.name = 'CapacityManager'
 
 includeBuild '../ProcessFramework'
-//includeBuild '../LaunixTools'
-//includeBuild '../Table'
