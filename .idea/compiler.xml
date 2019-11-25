@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="LaunixTools.main" target="1.8" />
+      <module name="LaunixTools.test" target="1.8" />
+      <module name="Table.main" target="1.8" />
+      <module name="Table.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
