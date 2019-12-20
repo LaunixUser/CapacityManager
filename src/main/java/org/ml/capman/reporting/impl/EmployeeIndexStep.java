@@ -1,26 +1,3 @@
-/*
- * The MIT License
- *
- * Copyright 2019 Dr. Matthias Laux.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package org.ml.capman.reporting.impl;
 
 import java.util.Comparator;
@@ -101,13 +78,11 @@ public class EmployeeIndexStep extends AbstractDirectTableDataStep {
         } else {
             tableData.setTableHeader("Employee Index");
         }
-        tableData.addTable("tableBody", createTable(employeeData));
-        String fileName = getFileName();
-        tables.put(fileName, tableData);
-
         setDescription = propertyManager.getString(OptionalKey.setDescription, "Employee Index");
-        fileNames.put(setDescription, fileName);
-
+        tableData.addTable("tableBody", createTable(employeeData));
+        //.... There is only one table in this set, so the one table uses the same description as the entire set
+        tableData.setDescription(setDescription);
+        tables.put("employeeIndex", tableData);
         return tables;
 
     }
@@ -115,10 +90,9 @@ public class EmployeeIndexStep extends AbstractDirectTableDataStep {
     /**
      * @return
      */
-    public static String getFileName() {
-        return "employeeIndex";
-    }
-
+//    public static String getFileName() {
+//        return "employeeIndex";
+//    }
     /**
      * @param employeeData
      * @return

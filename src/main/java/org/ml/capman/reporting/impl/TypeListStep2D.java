@@ -1,26 +1,3 @@
-/*
- * The MIT License
- *
- * Copyright 2019 Dr. Matthias Laux.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package org.ml.capman.reporting.impl;
 
 import java.util.Comparator;
@@ -118,9 +95,8 @@ public class TypeListStep2D extends AbstractDirectTableDataStep {
                                         tableData.setTableHeader("Employees by " + typeName1 + " and " + typeName2);
                                     }
                                     tableData.addTable("tableBody", createTable(employeeData, type1, type2));
-                                    String fileName = getFileName(typeName1, typeName2);
-                                    fileNames.put("Employees by type " + typeName1 + " and " + typeName2, fileName);
-                                    tables.put(fileName, tableData);
+                                    tableData.setDescription("Employees by type " + typeName1 + " and " + typeName2);
+                                    tables.put("employeeList2D_" + typeName1 + "_by_" + typeName2, tableData);
                                 }
                             }
                         }
@@ -139,15 +115,15 @@ public class TypeListStep2D extends AbstractDirectTableDataStep {
      * @param typeName2
      * @return
      */
-    public static String getFileName(String typeName1, String typeName2) {
-        if (typeName1 == null) {
-            throw new NullPointerException("typeName1 may not be null");
-        }
-        if (typeName2 == null) {
-            throw new NullPointerException("typeName2 may not be null");
-        }
-        return "employeeList2D_" + typeName1 + "_by_" + typeName2;
-    }
+//    public static String getFileName(String typeName1, String typeName2) {
+//        if (typeName1 == null) {
+//            throw new NullPointerException("typeName1 may not be null");
+//        }
+//        if (typeName2 == null) {
+//            throw new NullPointerException("typeName2 may not be null");
+//        }
+//        return "employeeList2D_" + typeName1 + "_by_" + typeName2;
+//    }
 
     /**
      * @param employeeData

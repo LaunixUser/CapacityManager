@@ -1,32 +1,11 @@
-/*
- * The MIT License
- *
- * Copyright 2019 Dr. Matthias Laux.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-package org.ml.capman.reporting;
+package org.ml.capman.reporting.impl;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.ml.capman.reporting.AbstractDirectTableDataStep;
 
 import org.ml.tools.PropertyManager;
 import org.ml.tools.logging.LoggerFactory;
@@ -97,10 +76,11 @@ public class ReportingOverviewStep extends AbstractDirectProcessStep<Map<String,
         for (String stepID : steps.keySet()) {
             AbstractDirectTableDataStep step = steps.get(stepID);
             String key = n + ": " + step.getSetDescription();
+            LOGGER.log(Level.INFO, "Adding table data for step ''{0}'' with index {1}", new Object[]{step.getSetDescription(), n});
             tableData.addTable(key, createTable(stepID, step));
             n++;
         }
-        tables.put(getFileName(), tableData);
+        tables.put("reporting", tableData);
 
         return tables;
 
@@ -109,10 +89,9 @@ public class ReportingOverviewStep extends AbstractDirectProcessStep<Map<String,
     /**
      * @return
      */
-    public static String getFileName() {
-        return "reporting";
-    }
-
+//    public static String getFileName() {
+//        return "reporting";
+//    }
     /**
      * @param stepID
      * @param step
@@ -128,7 +107,6 @@ public class ReportingOverviewStep extends AbstractDirectProcessStep<Map<String,
 
         Table table = new Table(DEFAULT_TABLE_SIZE, DEFAULT_TABLE_SIZE);
         table.setGrow();
-//        table.setRenderer(new SimpleVelocityRenderer());
 
         int row = 0;
         int col = 0;
@@ -138,9 +116,10 @@ public class ReportingOverviewStep extends AbstractDirectProcessStep<Map<String,
 
         //.... Data
         int n = 1;
-        for (String key : step.getFileNames().keySet()) {
-            String url = relativePath + stepID + File.separatorChar + step.getFileNames().get(key).replaceAll("\\..+$", "");
-            UrlContent urlContent = new UrlContent(url, key);
+        Map<String, TableData> dataCache = step.getOutputDataCache();
+        for (String key : dataCache.keySet()) {
+            String url = relativePath + stepID + File.separatorChar + key.replaceAll("\\..+$", "");
+            UrlContent urlContent = new UrlContent(url, dataCache.get(key).getDescription());
             table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(urlContent), row++, 0);
         }
 

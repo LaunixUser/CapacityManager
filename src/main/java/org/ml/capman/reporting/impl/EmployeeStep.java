@@ -1,26 +1,3 @@
-/*
- * The MIT License
- *
- * Copyright 2019 Dr. Matthias Laux.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package org.ml.capman.reporting.impl;
 
 import java.util.HashMap;
@@ -81,31 +58,31 @@ public class EmployeeStep extends AbstractDirectTableDataStep {
         }
 
         Map<String, TableData> tables = new HashMap<>();
-        try {
-            for (Employee employee : employeeData.getEmployees()) {
+        for (Employee employee : employeeData.getEmployees()) {
 
-                TableData tableData = new TableData(propertyManager);
-                tableData.setTableHeader("Detailed Data for Employee: " + employee.getName());
+            TableData tableData = new TableData(propertyManager);
+            tableData.setTableHeader("Detailed Data for Employee: " + employee.getName());
 
-                Table[] t = createTables(employee);
+            Table[] t = createTables(employee);
 
-                int ind = 0;
-                tableData.setTableSubHeader("tableBody" + ind, "Scalar Type Values");
+            int ind = 0;
+            tableData.setTableSubHeader("tableBody" + ind, "Scalar Type Values");
+            tableData.addTable("tableBody" + ind, t[ind++]);
+            tableData.setTableSubHeader("tableBody" + ind, "Capacity");
+            tableData.addTable("tableBody" + ind, t[ind++]);
+            tableData.setTableSubHeader("tableBody" + ind, "Field Type Values");
+            tableData.addTable("tableBody" + ind, t[ind++]);
+            if (employee.getEmployees().size() > 0) {
+                tableData.setTableSubHeader("tableBody" + ind, "Direct Reports");
                 tableData.addTable("tableBody" + ind, t[ind++]);
-                tableData.setTableSubHeader("tableBody" + ind, "Capacity");
-                tableData.addTable("tableBody" + ind, t[ind++]);
-                tableData.setTableSubHeader("tableBody" + ind, "Field Type Values");
-                tableData.addTable("tableBody" + ind, t[ind++]);
-                if (employee.getEmployees().size() > 0) {
-                    tableData.setTableSubHeader("tableBody" + ind, "Direct Reports");
-                    tableData.addTable("tableBody" + ind, t[ind++]);
-                }
-
-                tables.put(getFileName(employee), tableData);
             }
-        } catch (Exception ex) {
-            LOGGER.log(Level.SEVERE, "{0}:{1}", new Object[]{ex.getClass(), ex.getMessage()});
+
+            tables.put(employee.getID(), tableData);
+            //.... There is only one table in this set, so the one table uses the same description as the entire set
+            tableData.setDescription(employee.getID());
+
         }
+        setDescription = propertyManager.getString(OptionalKey.setDescription, "Employee");
         return tables;
     }
 
@@ -248,7 +225,7 @@ public class EmployeeStep extends AbstractDirectTableDataStep {
      * @param employee
      * @return
      */
-    public static String getFileName(Employee employee) {
-        return employee.getID();
-    }
+//    public static String getFileName(Employee employee) {
+//        return employee.getID();
+//    }
 }

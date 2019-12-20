@@ -1,26 +1,3 @@
-/*
- * The MIT License
- *
- * Copyright 2019 Dr. Matthias Laux.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package org.ml.capman.reporting.impl;
 
 import java.util.Comparator;
@@ -152,12 +129,11 @@ public class EmployeeTypeKindStep extends AbstractDirectTableDataStep {
             tableData.setTableHeader("Employee Values for TypeKind: " + selectedKind + " = " + selectedValue);
         }
         createTables(tableData, employeeData);
-        String fileName = getFileName(selectedKind, selectedValue);
-        tables.put(fileName, tableData);
 
         setDescription = propertyManager.getString(EmployeeIndexStep.OptionalKey.setDescription, "TypeKind: " + selectedKind + " = " + selectedValue);
-        fileNames.put(setDescription, fileName);
-
+        //.... There is only one table in this set, so the one table uses the same description as the entire set
+        tableData.setDescription(setDescription);
+        tables.put("employeeTypeKind_" + selectedKind + "_" + selectedValue, tableData);
         return tables;
 
     }
@@ -167,13 +143,12 @@ public class EmployeeTypeKindStep extends AbstractDirectTableDataStep {
      * @param selectedValue
      * @return
      */
-    public static String getFileName(TypeKind kind, Comparable selectedValue) {
-        if (kind == null) {
-            throw new NullPointerException("kind may not be null");
-        }
-        return "employeeTypeKind_" + kind + "_" + selectedValue;
-    }
-
+//    public static String getFileName(TypeKind kind, Comparable selectedValue) {
+//        if (kind == null) {
+//            throw new NullPointerException("kind may not be null");
+//        }
+//        return "employeeTypeKind_" + kind + "_" + selectedValue;
+//    }
     /**
      * @param tableData
      * @param employeeData

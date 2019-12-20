@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import org.ml.tools.PropertyManager;
 import org.ml.capman.DataConfiguration;
@@ -42,9 +41,8 @@ import org.ml.pf.step.AbstractDirectProcessStep;
  */
 public abstract class AbstractDirectTableDataStep extends AbstractDirectProcessStep<EmployeeData<Employee>, Map<String, TableData>> {
 
-    protected Map<String, String> fileNames = new TreeMap<>();
-    protected String setDescription = null;
-    protected Comparator<Employee> comparator = null;
+    protected String setDescription;
+    protected Comparator<Employee> comparator;
     protected DataConfiguration dataConfiguration = DataConfiguration.getInstance();
     protected List<IType> outputTypes = new ArrayList<>();
 
@@ -54,7 +52,7 @@ public abstract class AbstractDirectTableDataStep extends AbstractDirectProcessS
     public enum OptionalKey {
         //.... ITypes to be included in the output
         outputTypes,
-        //.... The minimum level for IType.getLevel() to be included ion the output (defaults to 0)
+        //.... The minimum level for IType.getLevel() to be included in the output (defaults to 0)
         minimumLevel,
         //.... The context for this data; basically a string that can be to further describe the output created
         setContext,
@@ -81,15 +79,6 @@ public abstract class AbstractDirectTableDataStep extends AbstractDirectProcessS
         if (propertyManager.containsProperty(OptionalKey.outputTypes)) {
             outputTypes = DataConfiguration.getTypesFromMapString(propertyManager.getProperty(OptionalKey.outputTypes));
         }
-    }
-
-    /**
-     * #
-     *
-     * @return
-     */
-    public Map<String, String> getFileNames() {
-        return fileNames;
     }
 
     /**
@@ -121,4 +110,5 @@ public abstract class AbstractDirectTableDataStep extends AbstractDirectProcessS
                 throw new UnsupportedOperationException("Unsupported TypeDimension for type = " + type);
         }
     }
+
 }
