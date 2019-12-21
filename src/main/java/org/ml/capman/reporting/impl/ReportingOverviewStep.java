@@ -76,7 +76,7 @@ public class ReportingOverviewStep extends AbstractDirectProcessStep<Map<String,
         for (String stepID : steps.keySet()) {
             AbstractDirectTableDataStep step = steps.get(stepID);
             String key = n + ": " + step.getSetDescription();
-            LOGGER.log(Level.INFO, "Adding table data for step ''{0}'' with index {1}", new Object[]{step.getSetDescription(), n});
+            LOGGER.log(Level.INFO, "Adding table data for step ''{0}'' with index {1}", new Object[]{step.getClass(), n});
             tableData.addTable(key, createTable(stepID, step));
             n++;
         }

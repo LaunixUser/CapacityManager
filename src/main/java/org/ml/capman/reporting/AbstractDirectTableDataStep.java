@@ -37,11 +37,14 @@ import org.ml.pf.output.TableData;
 import org.ml.pf.step.AbstractDirectProcessStep;
 
 /**
+ * This is a helper class only, adding some capabilities required by the
+ * standard IProcessStep implementations
+ *
  * @author Dr. Matthias Laux
  */
 public abstract class AbstractDirectTableDataStep extends AbstractDirectProcessStep<EmployeeData<Employee>, Map<String, TableData>> {
 
-    protected String setDescription;
+    protected String setDescription = "(UNDEFINED)";
     protected Comparator<Employee> comparator;
     protected DataConfiguration dataConfiguration = DataConfiguration.getInstance();
     protected List<IType> outputTypes = new ArrayList<>();

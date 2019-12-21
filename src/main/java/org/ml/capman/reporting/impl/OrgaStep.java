@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 
 import org.ml.tools.PropertyManager;
 import org.ml.tools.logging.LoggerFactory;
-import org.ml.capman.DataConfiguration;
 import org.ml.capman.DataConfiguration.TypeDimension;
 import org.ml.capman.EmployeeCapacity.CapacityType;
 import org.ml.capman.Employee;
@@ -20,23 +19,23 @@ import org.ml.capman.render.AbstractTableCreator;
 import static org.ml.capman.render.AbstractTableCreator.DEFAULT_TABLE_SIZE;
 import static org.ml.capman.render.AbstractTableCreator.KEY_STYLE;
 import static org.ml.capman.render.RenderingType.*;
+import org.ml.capman.reporting.AbstractDirectTableDataStep;
 
 import org.ml.pf.output.TableData;
-import org.ml.pf.step.AbstractDirectProcessStep;
 import org.ml.table.Cell;
 import org.ml.table.Table;
 
 /**
  * @author mlaux
  */
-public class OrgaStep extends AbstractDirectProcessStep<EmployeeData<Employee>, Map<String, TableData>> {
+public class OrgaStep extends AbstractDirectTableDataStep {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(OrgaStep.class.getName());
     private final static int CELL_WIDTH = 4;
     private final static int CELL_BORDER = 1;
     private final static int CELL_VSIZE = 2;
     private final static int CELL_VSPACING = 2;
-    private DataConfiguration dataConfiguration;
+    public final static String ORG_PREFIX = "h_";
 
     /**
      *
@@ -53,24 +52,11 @@ public class OrgaStep extends AbstractDirectProcessStep<EmployeeData<Employee>, 
     }
 
     /**
-     * Optional configuration keys
-     */
-    public enum OptionalKey {
-
-        //.... The context for this data; basically a string that can be to further describe the output created
-        setContext,
-        //.... A descriptive text for this data
-        setDescription,
-    }
-
-    /**
      * @param propertyManager
      */
     public OrgaStep(PropertyManager propertyManager) {
-
         super(propertyManager);
         propertyManager.validateAllPropertyNames(RequiredKey.typeCountry);
-        dataConfiguration = DataConfiguration.getInstance();
     }
 
     /**
@@ -84,7 +70,7 @@ public class OrgaStep extends AbstractDirectProcessStep<EmployeeData<Employee>, 
         }
 
         Map<String, TableData> tables = new HashMap<>();
-        String rootFileName = getFileName(employeeData.getRootEmployee());
+        String rootFileName = ORG_PREFIX + employeeData.getRootEmployee().getID();
 
         assembleContextData(tables, employeeData.getRootEmployee(), rootFileName);
         for (String fileName : tables.keySet()) {
@@ -92,7 +78,7 @@ public class OrgaStep extends AbstractDirectProcessStep<EmployeeData<Employee>, 
         }
 
         //.... A bit of a hack to make sure we have an index file, irrespective of the file name created for the root employee
-        tables.put("index", tables.get(getFileName(employeeData.getRootEmployee())));
+        tables.put("index", tables.get(ORG_PREFIX + employeeData.getRootEmployee().getID()));
 
         return tables;
 
@@ -123,13 +109,15 @@ public class OrgaStep extends AbstractDirectProcessStep<EmployeeData<Employee>, 
                 tableData.setTableHeader("Org Chart");
             }
             tableData.addTable("tableBody", createTable(employee, rootFileName));
-            tables.put(getFileName(employee), tableData);
+            tableData.setDescription(employee.getID());
+            tables.put(ORG_PREFIX + employee.getID(), tableData);
 
             for (Employee child : employee.getEmployees().values()) {
                 assembleContextData(tables, child, rootFileName);
             }
 
         }
+        setDescription = propertyManager.getString(AbstractDirectTableDataStep.OptionalKey.setDescription, "Org Charts");
     }
 
     /**
@@ -308,10 +296,10 @@ public class OrgaStep extends AbstractDirectProcessStep<EmployeeData<Employee>, 
         cell.setContent(ContentType.role, employee.get(dataConfiguration.get(propertyManager.getProperty(RequiredKey.typePosition), TypeDimension.One)));
         cell.setContent(ContentType.detailURL, employee.getUrl(EmployeeUrl.dataID).getAddress());
         if (!employee.getEmployees().isEmpty() && !topLevel) {
-            cell.setContent(ContentType.chartURL, getFileName(employee));
+            cell.setContent(ContentType.chartURL, ORG_PREFIX + employee.getID());
         }
         if (topLevel && employee.hasManager()) {
-            cell.setContent(ContentType.upURL, getFileName(employee.getManager()));
+            cell.setContent(ContentType.upURL, ORG_PREFIX + employee.getManager().getID());
         }
         return cell;
     }
@@ -434,14 +422,4 @@ public class OrgaStep extends AbstractDirectProcessStep<EmployeeData<Employee>, 
         return withReports;
     }
 
-    /**
-     * @param employee
-     * @return
-     */
-    public static String getFileName(Employee employee) {
-        if (employee == null) {
-            throw new NullPointerException("employee may not be null");
-        }
-        return "h_" + employee.getID();
-    }
 }
