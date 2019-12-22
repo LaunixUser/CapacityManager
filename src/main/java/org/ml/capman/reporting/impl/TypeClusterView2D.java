@@ -287,14 +287,14 @@ public class TypeClusterView2D extends AbstractDirectTableDataStep {
         col = 0;
         for (Employee employee : employees.get(primaryKey1).get(primaryKey2)) {
             table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(n++), row, col++);
-            table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.dataName)), row, col++);
-            table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.dataID)), row, col++);
+            table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
+            table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_ID)), row, col++);
             for (IType type : outputTypes) {
                 table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.get(type)), row, col++);
             }
             if (employee.hasManager()) {
-                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.dataName)), row, col++);
-                table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.orgaID)), row, col++);
+                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
+                table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.ORGA_ID)), row, col++);
                 for (IType type : outputTypes) {
                     table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getManager().get(type)), row, col++);
                 }

@@ -140,17 +140,17 @@ public class EmployeeIndexStep extends AbstractDirectTableDataStep {
             col = 0;
 
             table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(n++), row, col++);
-            table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(EmployeeUrl.dataName)), row, col++);
-            table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(EmployeeUrl.dataID)), row, col++);
+            table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(EmployeeUrl.DATA_NAME)), row, col++);
+            table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(EmployeeUrl.DATA_ID)), row, col++);
             if (employee.getEmployees().size() > 0) {
-                table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(employee.getUrl(EmployeeUrl.orgaX)), row, col++);
+                table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(employee.getUrl(EmployeeUrl.ORGA_X)), row, col++);
             } else {
                 table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(""), row, col++);
             }
             if (employee.hasManager()) {
-                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getManager().getUrl(EmployeeUrl.dataName)), row, col++);
-                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getManager().getUrl(EmployeeUrl.dataID)), row, col++);
-                table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(employee.getManager().getUrl(EmployeeUrl.orgaX)), row, col++);
+                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getManager().getUrl(EmployeeUrl.DATA_NAME)), row, col++);
+                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getManager().getUrl(EmployeeUrl.DATA_ID)), row, col++);
+                table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(employee.getManager().getUrl(EmployeeUrl.ORGA_X)), row, col++);
             } else {
                 table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(""), row, col++);
                 table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(""), row, col++);

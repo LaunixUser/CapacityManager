@@ -237,9 +237,9 @@ public class EmployeeTypeKindStep extends AbstractDirectTableDataStep {
 
                 table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(n++), row, col++);
 
-                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.dataName)), row, col++);
+                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
                 if (employee.getEmployees().size() > 0) {
-                    table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(employee.getUrl(Employee.EmployeeUrl.orgaX)), row, col++);
+                    table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(employee.getUrl(Employee.EmployeeUrl.ORGA_X)), row, col++);
                 } else {
                     table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(""), row, col++);
                 }
@@ -247,8 +247,8 @@ public class EmployeeTypeKindStep extends AbstractDirectTableDataStep {
                     table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.get(t)), row, col++);
                 }
                 if (employee.hasManager()) {
-                    table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.dataName)), row, col++);
-                    table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.orgaX)), row, col++);
+                    table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
+                    table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.ORGA_X)), row, col++);
                     for (IType t : outputTypes) {
                         table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getManager().get(t)), row, col++);
                     }

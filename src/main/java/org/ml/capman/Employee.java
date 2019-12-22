@@ -1,26 +1,3 @@
-/*
- * The MIT License
- *
- * Copyright 2019 Dr. Matthias Laux.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package org.ml.capman;
 
 import java.util.HashMap;
@@ -30,24 +7,38 @@ import java.util.TreeMap;
 import org.ml.table.content.UrlContent;
 
 /**
+ * This class hold all information for a given employee
+ *
  * @author mlaux
  */
 public class Employee extends DataContainer {
 
-    private String ID = "";
-    private EmployeeCapacity capacity = new EmployeeCapacity();
+    private String ID;
+    private final EmployeeCapacity capacity = new EmployeeCapacity();
     private boolean root = false;
-    private Employee manager = null;
+    private Employee manager;
     private final Map<String, Employee> employees = new TreeMap<>();
-    private IType nameType = null;
-    private IType sortNameType = null;
-    private Map<EmployeeUrl, UrlContent> urls = new HashMap<>();
+    private IType nameType;
+    private IType sortNameType;
+    private final Map<EmployeeUrl, UrlContent> urls = new HashMap<>();
 
     /**
-     *
+     * Types of URL data that can be stored for an employee. Currently, this is
+     * not extensible or configurable.
      */
     public enum EmployeeUrl {
-        dataName, dataID, dataX, orgaName, orgaID, orgaX
+        //.... URL data that can be used when the name of the employee is used / displayed to point to the actual data for the employee
+        DATA_NAME,
+        //.... URL data that can be used when the ID of the employee is used / displayed to point to the actual data for the employee
+        DATA_ID,
+        //.... URL data that can be used when just some placeholder string is used / displayed to point to the actual data for the employee
+        DATA_X,
+        //.... URL data that can be used when the name of the employee is used / displayed to point to the org chart for the employee
+        ORGA_NAME,
+        //.... URL data that can be used when the ID of the employee is used / displayed to point to the org chart for the employee
+        ORGA_ID,
+        //.... URL data that can be used when just some placeholder string is used / displayed to point to the org chart for the employee
+        ORGA_X
     }
 
     /**
@@ -58,7 +49,8 @@ public class Employee extends DataContainer {
         for (EmployeeUrl url : EmployeeUrl.values()) {
             urls.put(url, new UrlContent("", ID));
         }
-    }
+        System.exit(9);
+    }   
 
     /**
      * @return
@@ -93,16 +85,27 @@ public class Employee extends DataContainer {
     }
 
     /**
-     * @param nameType
+     * Set the IType which holds the name for the employee
+     *
+     * @param nameType The IType to be used to identify the employee by name. If
+     * the sortNameType is null (i. e. undefined) when this method is invoked,
+     * it is set to the same IType value as a reasonable default, therefore in
+     * the case both ITypes should be equal, a separate call to
+     * setSortNameType() is not actually necessary
      */
     public void setNameType(IType nameType) {
         if (nameType == null) {
             throw new NullPointerException("nameType may not be null");
         }
         this.nameType = nameType;
+        if (sortNameType == null) {
+            this.sortNameType = nameType;
+        }
     }
 
     /**
+     * Set the IType which is to be used for sorting this employee
+     *
      * @param sortNameType
      */
     public void setSortNameType(IType sortNameType) {

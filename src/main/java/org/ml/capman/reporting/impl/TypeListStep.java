@@ -191,14 +191,14 @@ public class TypeListStep extends AbstractDirectTableDataStep {
                 table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(n), row, col++);
                 table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(primaryKey), row, col++);
                 table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(count), row, col++);
-                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.dataName)), row, col++);
-                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.dataID)), row, col++);
+                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
+                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_ID)), row, col++);
                 for (IType t : outputTypes) {
                     table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.get(t)), row, col++);
                 }
                 if (employee.hasManager()) {
-                    table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.dataName)), row, col++);
-                    table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.orgaID)), row, col++);
+                    table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
+                    table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.ORGA_ID)), row, col++);
                     for (IType t : outputTypes) {
                         table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getManager().get(t)), row, col++);
                     }

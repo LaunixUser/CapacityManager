@@ -294,7 +294,7 @@ public class OrgaStep extends AbstractDirectTableDataStep {
         }
 
         cell.setContent(ContentType.role, employee.get(dataConfiguration.get(propertyManager.getProperty(RequiredKey.typePosition), TypeDimension.One)));
-        cell.setContent(ContentType.detailURL, employee.getUrl(EmployeeUrl.dataID).getAddress());
+        cell.setContent(ContentType.detailURL, employee.getUrl(EmployeeUrl.DATA_ID).getAddress());
         if (!employee.getEmployees().isEmpty() && !topLevel) {
             cell.setContent(ContentType.chartURL, ORG_PREFIX + employee.getID());
         }

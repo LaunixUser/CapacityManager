@@ -109,8 +109,8 @@ public class EmployeeStep extends AbstractDirectTableDataStep {
         }
         row++;
         col = 0;
-        table1.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.dataID)), row, col++);
-        table1.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.dataName)), row, col++);
+        table1.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_ID)), row, col++);
+        table1.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
         for (IType type : DataConfiguration.getInstance().get(One).values()) {
             if (employee.get(type) != null) {
                 table1.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.get(type)), row, col++);
@@ -192,8 +192,8 @@ public class EmployeeStep extends AbstractDirectTableDataStep {
                 Employee staffMember = employee.getEmployees().get(employeeID);
                 col = 0;
                 table4.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(n++), row, col++);
-                table4.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(staffMember.getUrl(Employee.EmployeeUrl.dataID)), row, col++);
-                table4.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(staffMember.getUrl(Employee.EmployeeUrl.dataName)), row, col++);
+                table4.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(staffMember.getUrl(Employee.EmployeeUrl.DATA_ID)), row, col++);
+                table4.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(staffMember.getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
                 for (IType type : DataConfiguration.getInstance().get(One).values()) {
                     if (staffMember.get(type) != null) {
                         table4.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(staffMember.get(type)), row, col++);
