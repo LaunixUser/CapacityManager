@@ -10,8 +10,6 @@ import org.ml.capman.reporting.AbstractDirectTableDataStep;
 import org.ml.tools.PropertyManager;
 import org.ml.tools.logging.LoggerFactory;
 
-import static org.ml.capman.render.AbstractTableCreator.DEFAULT_TABLE_SIZE;
-import static org.ml.capman.render.AbstractTableCreator.KEY_STYLE;
 import static org.ml.capman.render.RenderingType.cellLeft;
 import static org.ml.capman.render.RenderingType.cellLeftBold;
 
@@ -105,14 +103,14 @@ public class ReportingOverviewStep extends AbstractDirectProcessStep<Map<String,
             throw new NullPointerException("stepID may not be null");
         }
 
-        Table table = new Table(DEFAULT_TABLE_SIZE, DEFAULT_TABLE_SIZE);
+        Table table = new Table();
         table.setGrow();
 
         int row = 0;
         int col = 0;
 
         //.... Header
-        table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent(step.getSetDescription()), row++, 0);
+        table.setCell(new Cell().addStyle(cellLeftBold).setContent(step.getSetDescription()), row++, 0);
 
         //.... Data
         int n = 1;
@@ -120,7 +118,7 @@ public class ReportingOverviewStep extends AbstractDirectProcessStep<Map<String,
         for (String key : dataCache.keySet()) {
             String url = relativePath + stepID + File.separatorChar + key.replaceAll("\\..+$", "");
             UrlContent urlContent = new UrlContent(url, dataCache.get(key).getDescription());
-            table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(urlContent), row++, 0);
+            table.setCell(new Cell().addStyle(cellLeft).setContent(urlContent), row++, 0);
         }
 
         table.compact();

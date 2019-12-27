@@ -40,7 +40,7 @@ public class EmployeeRenderer {
             throw new NullPointerException("renderingStyle may not be null");
         }
 
-        Table table = new Table(DEFAULT_TABLE_SIZE, DEFAULT_TABLE_SIZE);
+        Table table = new Table();
         table.setGrow();
 
         int row = 0;
@@ -50,20 +50,20 @@ public class EmployeeRenderer {
 
             case horizontal:
 
-                table.setCell(new Cell().setProp(KEY_STYLE, renderingStyle.getHeaderStyle()).setContent("ID"), row, col++);
-                table.setCell(new Cell().setProp(KEY_STYLE, renderingStyle.getHeaderStyle()).setContent("Name"), row, col++);
+                table.setCell(new Cell().addStyle(renderingStyle.getHeaderStyle()).setContent("ID"), row, col++);
+                table.setCell(new Cell().addStyle(renderingStyle.getHeaderStyle()).setContent("Name"), row, col++);
                 for (IType type : DataConfiguration.getInstance().get(One).values()) {
-                    table.setCell(new Cell().setProp(KEY_STYLE, renderingStyle.getHeaderStyle()).setContent(type.getTypeName()), row, col++);
+                    table.setCell(new Cell().addStyle(renderingStyle.getHeaderStyle()).setContent(type.getTypeName()), row, col++);
                 }
                 row++;
                 col = 0;
-                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_ID)), row, col++);
-                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
+                table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_ID)), row, col++);
+                table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
                 for (IType type : DataConfiguration.getInstance().get(One).values()) {
                     if (employee.get(type) != null) {
-                        table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.get(type)), row, col++);
+                        table.setCell(new Cell().addStyle(cellLeft).setContent(employee.get(type)), row, col++);
                     } else {
-                        table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(UNDEFINED), row, col++);
+                        table.setCell(new Cell().addStyle(cellLeft).setContent(UNDEFINED), row, col++);
                     }
                 }
                 break;

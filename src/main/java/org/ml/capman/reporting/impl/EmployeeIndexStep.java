@@ -17,8 +17,6 @@ import org.ml.capman.EmployeeData;
 import org.ml.capman.IType;
 import org.ml.capman.reporting.AbstractDirectTableDataStep;
 
-import static org.ml.capman.render.AbstractTableCreator.DEFAULT_TABLE_SIZE;
-import static org.ml.capman.render.AbstractTableCreator.KEY_STYLE;
 import static org.ml.capman.render.RenderingType.cellCenter;
 import static org.ml.capman.render.RenderingType.cellLeft;
 import static org.ml.capman.render.RenderingType.cellLeftBold;
@@ -110,7 +108,7 @@ public class EmployeeIndexStep extends AbstractDirectTableDataStep {
 
         //.... Create the table
         LOGGER.log(Level.INFO, "Creating the table");
-        Table table = new Table(DEFAULT_TABLE_SIZE, DEFAULT_TABLE_SIZE);
+        Table table = new Table();
         table.setGrow();
         //   table.setRenderer(new SimpleVelocityRenderer());
 
@@ -118,18 +116,18 @@ public class EmployeeIndexStep extends AbstractDirectTableDataStep {
         int col = 0;
 
         //.... Header
-        table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent("#"), row, col++);
-        table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent("Employee"), row, col++);
-        table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent("ID"), row, col++);
-        table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent("Org"), row, col++);
-        table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent("Manager"), row, col++);
-        table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent("ID"), row, col++);
-        table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent("Org"), row, col++);
+        table.setCell(new Cell().addStyle(cellLeftBold).setContent("#"), row, col++);
+        table.setCell(new Cell().addStyle(cellLeftBold).setContent("Employee"), row, col++);
+        table.setCell(new Cell().addStyle(cellLeftBold).setContent("ID"), row, col++);
+        table.setCell(new Cell().addStyle(cellLeftBold).setContent("Org"), row, col++);
+        table.setCell(new Cell().addStyle(cellLeftBold).setContent("Manager"), row, col++);
+        table.setCell(new Cell().addStyle(cellLeftBold).setContent("ID"), row, col++);
+        table.setCell(new Cell().addStyle(cellLeftBold).setContent("Org"), row, col++);
         for (IType type : outputTypes) {
-            table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent(type.toString()), row, col++);
+            table.setCell(new Cell().addStyle(cellLeftBold).setContent(type.toString()), row, col++);
         }
         for (CapacityType capacityType : CapacityType.values()) {
-            table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent(capacityType.toString()), row, col++);
+            table.setCell(new Cell().addStyle(cellLeftBold).setContent(capacityType.toString()), row, col++);
         }
 
         //.... Data
@@ -139,28 +137,28 @@ public class EmployeeIndexStep extends AbstractDirectTableDataStep {
             row++;
             col = 0;
 
-            table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(n++), row, col++);
-            table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(EmployeeUrl.DATA_NAME)), row, col++);
-            table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(EmployeeUrl.DATA_ID)), row, col++);
+            table.setCell(new Cell().addStyle(cellLeft).setContent(n++), row, col++);
+            table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getUrl(EmployeeUrl.DATA_NAME)), row, col++);
+            table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getUrl(EmployeeUrl.DATA_ID)), row, col++);
             if (employee.getEmployees().size() > 0) {
-                table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(employee.getUrl(EmployeeUrl.ORGA_X)), row, col++);
+                table.setCell(new Cell().addStyle(cellCenter).setContent(employee.getUrl(EmployeeUrl.ORGA_X)), row, col++);
             } else {
-                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(""), row, col++);
+                table.setCell(new Cell().addStyle(cellLeft).setContent(""), row, col++);
             }
             if (employee.hasManager()) {
-                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getManager().getUrl(EmployeeUrl.DATA_NAME)), row, col++);
-                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getManager().getUrl(EmployeeUrl.DATA_ID)), row, col++);
-                table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(employee.getManager().getUrl(EmployeeUrl.ORGA_X)), row, col++);
+                table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getManager().getUrl(EmployeeUrl.DATA_NAME)), row, col++);
+                table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getManager().getUrl(EmployeeUrl.DATA_ID)), row, col++);
+                table.setCell(new Cell().addStyle(cellCenter).setContent(employee.getManager().getUrl(EmployeeUrl.ORGA_X)), row, col++);
             } else {
-                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(""), row, col++);
-                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(""), row, col++);
-                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(""), row, col++);
+                table.setCell(new Cell().addStyle(cellLeft).setContent(""), row, col++);
+                table.setCell(new Cell().addStyle(cellLeft).setContent(""), row, col++);
+                table.setCell(new Cell().addStyle(cellLeft).setContent(""), row, col++);
             }
             for (IType type : outputTypes) {
-                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.get(type)), row, col++);
+                table.setCell(new Cell().addStyle(cellLeft).setContent(employee.get(type)), row, col++);
             }
             for (CapacityType capacityType : CapacityType.values()) {
-                table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(employee.getCapacity(capacityType)), row, col++);
+                table.setCell(new Cell().addStyle(cellCenter).setContent(employee.getCapacity(capacityType)), row, col++);
             }
         }
 

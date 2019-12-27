@@ -23,8 +23,6 @@ import org.ml.capman.EmployeeData;
 import org.ml.capman.IType;
 import org.ml.capman.reporting.AbstractDirectTableDataStep;
 
-import static org.ml.capman.render.AbstractTableCreator.DEFAULT_TABLE_SIZE;
-import static org.ml.capman.render.AbstractTableCreator.KEY_STYLE;
 import static org.ml.capman.render.RenderingType.*;
 
 import org.ml.pf.output.TableData;
@@ -148,7 +146,7 @@ public class TypeListStep extends AbstractDirectTableDataStep {
         }
 
         //.... Create the output table
-        Table table = new Table(DEFAULT_TABLE_SIZE, DEFAULT_TABLE_SIZE);
+        Table table = new Table();
         table.setGrow();
         //     table.setRenderer(new SimpleVelocityRenderer());
 
@@ -156,27 +154,27 @@ public class TypeListStep extends AbstractDirectTableDataStep {
         int col = 0;
 
         //.... Header
-        table.setCell(new Cell().setProp(KEY_STYLE, cellCenterBold).setContent("#"), row, col++);
-        table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent(type.getTypeName()), row, col++);
-        table.setCell(new Cell().setProp(KEY_STYLE, cellCenterBold).setContent("Counter"), row, col++);
-        table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent("Employee"), row, col++);
-        table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent("ID"), row, col++);
+        table.setCell(new Cell().addStyle(cellCenterBold).setContent("#"), row, col++);
+        table.setCell(new Cell().addStyle(cellLeftBold).setContent(type.getTypeName()), row, col++);
+        table.setCell(new Cell().addStyle(cellCenterBold).setContent("Counter"), row, col++);
+        table.setCell(new Cell().addStyle(cellLeftBold).setContent("Employee"), row, col++);
+        table.setCell(new Cell().addStyle(cellLeftBold).setContent("ID"), row, col++);
         for (IType t : outputTypes) {
-            table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent(t.toString()), row, col++);
+            table.setCell(new Cell().addStyle(cellLeftBold).setContent(t.toString()), row, col++);
         }
-        table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent("Manager"), row, col++);
-        table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent("ID"), row, col++);
+        table.setCell(new Cell().addStyle(cellLeftBold).setContent("Manager"), row, col++);
+        table.setCell(new Cell().addStyle(cellLeftBold).setContent("ID"), row, col++);
         for (IType t : outputTypes) {
-            table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent(t.toString()), row, col++);
+            table.setCell(new Cell().addStyle(cellLeftBold).setContent(t.toString()), row, col++);
         }
         if (type.getTypeDimension().equals(TypeDimension.Two)) {
-            table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent(getHeaderString(type)), row, col++);
+            table.setCell(new Cell().addStyle(cellLeftBold).setContent(getHeaderString(type)), row, col++);
         }
         for (CapacityType capacityType : CapacityType.values()) {
-            table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent(capacityType), row, col++);
+            table.setCell(new Cell().addStyle(cellLeftBold).setContent(capacityType), row, col++);
         }
         for (CapacityType capacityType : CapacityType.values()) {
-            table.setCell(new Cell().setProp(KEY_STYLE, cellLeftBold).setContent(capacityType + " (weighted)"), row, col++);
+            table.setCell(new Cell().addStyle(cellLeftBold).setContent(capacityType + " (weighted)"), row, col++);
         }
         row++;
 
@@ -188,37 +186,37 @@ public class TypeListStep extends AbstractDirectTableDataStep {
 
                 col = 0;
 
-                table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(n), row, col++);
-                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(primaryKey), row, col++);
-                table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(count), row, col++);
-                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
-                table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_ID)), row, col++);
+                table.setCell(new Cell().addStyle(cellCenter).setContent(n), row, col++);
+                table.setCell(new Cell().addStyle(cellLeft).setContent(primaryKey), row, col++);
+                table.setCell(new Cell().addStyle(cellCenter).setContent(count), row, col++);
+                table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
+                table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_ID)), row, col++);
                 for (IType t : outputTypes) {
-                    table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.get(t)), row, col++);
+                    table.setCell(new Cell().addStyle(cellLeft).setContent(employee.get(t)), row, col++);
                 }
                 if (employee.hasManager()) {
-                    table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
-                    table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.ORGA_ID)), row, col++);
+                    table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
+                    table.setCell(new Cell().addStyle(cellCenter).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.ORGA_ID)), row, col++);
                     for (IType t : outputTypes) {
-                        table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(employee.getManager().get(t)), row, col++);
+                        table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getManager().get(t)), row, col++);
                     }
                 } else {
                     for (int i = 0; i < 2 + outputTypes.size(); i++) {
-                        table.setCell(new Cell().setProp(KEY_STYLE, cellLeft).setContent(""), row, col++);
+                        table.setCell(new Cell().addStyle(cellLeft).setContent(""), row, col++);
                     }
                 }
 
                 if (type.getTypeDimension().equals(TypeDimension.Two)) {
-                    table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(employee.get(type, (String) primaryKey)), row, col++);
+                    table.setCell(new Cell().addStyle(cellCenter).setContent(employee.get(type, (String) primaryKey)), row, col++);
                 }
 
                 for (CapacityType capacityType : CapacityType.values()) {
-                    table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(employee.getCapacity(capacityType)), row, col++);
+                    table.setCell(new Cell().addStyle(cellCenter).setContent(employee.getCapacity(capacityType)), row, col++);
                 }
 
                 double percentage = summaryData.computePercentage(employee, type, primaryKey);
                 for (CapacityType capacityType : CapacityType.values()) {
-                    table.setCell(new Cell().setProp(KEY_STYLE, cellCenter).setContent(percentage * employee.getCapacity(capacityType)), row, col++);
+                    table.setCell(new Cell().addStyle(cellCenter).setContent(percentage * employee.getCapacity(capacityType)), row, col++);
                 }
 
                 row++;
@@ -229,22 +227,22 @@ public class TypeListStep extends AbstractDirectTableDataStep {
 
         //.... Totals
         col = 0;
-        table.setCell(new Cell(1, 2).setProp(KEY_STYLE, cellLeftEmpty).setContent("Totals"), row, col++);
+        table.setCell(new Cell(1, 2).addStyle(cellLeftEmpty).setContent("Totals"), row, col++);
         col++;
         if (type.getTypeDimension().equals(One)) {
-            table.setCell(new Cell().setProp(KEY_STYLE, cellCenterEmpty).setContent(summaryData.getTotalCount()), row, col++);
+            table.setCell(new Cell().addStyle(cellCenterEmpty).setContent(summaryData.getTotalCount()), row, col++);
         } else {
-            table.setCell(new Cell().setProp(KEY_STYLE, cellLeftEmpty), row, col++);
+            table.setCell(new Cell().addStyle(cellLeftEmpty), row, col++);
         }
-        table.setCell(new Cell(1, 4).setProp(KEY_STYLE, cellLeftEmpty), row, col++);
+        table.setCell(new Cell(1, 4).addStyle(cellLeftEmpty), row, col++);
         col += 3;
         if (type.getTypeDimension().equals(TypeDimension.Two)) {
-            table.setCell(new Cell().setProp(KEY_STYLE, cellLeftEmpty), row, col++);
+            table.setCell(new Cell().addStyle(cellLeftEmpty), row, col++);
         }
-        table.setCell(new Cell(1, CapacityType.values().length).setProp(KEY_STYLE, cellLeftEmpty), row, col);
+        table.setCell(new Cell(1, CapacityType.values().length).addStyle(cellLeftEmpty), row, col);
         col += CapacityType.values().length;
         for (CapacityType capacityType : CapacityType.values()) {
-            table.setCell(new Cell().setProp(KEY_STYLE, cellCenterEmpty).setContent(summaryData.getTotal().get(capacityType)), row, col++);
+            table.setCell(new Cell().addStyle(cellCenterEmpty).setContent(summaryData.getTotal().get(capacityType)), row, col++);
         }
 
         table.compact();
