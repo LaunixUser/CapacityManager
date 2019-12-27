@@ -49,7 +49,6 @@ public class Employee extends DataContainer {
         for (EmployeeUrl url : EmployeeUrl.values()) {
             urls.put(url, new UrlContent("", ID));
         }
-        System.exit(9);
     }   
 
     /**
