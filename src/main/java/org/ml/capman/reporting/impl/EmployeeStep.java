@@ -17,7 +17,7 @@ import org.ml.capman.EmployeeData;
 import org.ml.capman.IType;
 import org.ml.capman.reporting.AbstractDirectTableDataStep;
 
-import static org.ml.capman.render.AbstractTableCreator.*;
+import static org.ml.capman.render.experimental.AbstractTableCreator.*;
 import static org.ml.capman.render.RenderingType.*;
 
 import org.ml.pf.output.TableData;

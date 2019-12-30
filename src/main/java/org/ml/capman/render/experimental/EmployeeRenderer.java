@@ -1,4 +1,4 @@
-package org.ml.capman.render;
+package org.ml.capman.render.experimental;
 
 import java.util.logging.Logger;
 
@@ -10,7 +10,9 @@ import static org.ml.capman.DataConfiguration.TypeDimension.One;
 import org.ml.capman.Employee;
 import org.ml.capman.IType;
 
-import static org.ml.capman.render.AbstractTableCreator.*;
+import static org.ml.capman.render.RenderingDirection.horizontal;
+import static org.ml.capman.render.RenderingDirection.vertical;
+import org.ml.capman.render.RenderingStyle;
 import static org.ml.capman.render.RenderingType.cellLeft;
 
 import org.ml.table.Cell;
