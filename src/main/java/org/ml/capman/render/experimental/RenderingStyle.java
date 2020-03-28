@@ -1,4 +1,6 @@
-package org.ml.capman.render;
+package org.ml.capman.render.experimental;
+
+import org.ml.capman.render.RenderingType;
 
 /**
  * @author Dr. Matthias Laux
