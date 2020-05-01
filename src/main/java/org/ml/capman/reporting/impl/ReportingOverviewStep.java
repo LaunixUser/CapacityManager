@@ -1,8 +1,8 @@
 package org.ml.capman.reporting.impl;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.ml.capman.reporting.AbstractDirectTableDataStep;
@@ -63,7 +63,7 @@ public class ReportingOverviewStep extends AbstractDirectProcessStep<Map<String,
         String setContext = propertyManager.getString(OptionalKey.setContext, "");
         relativePath = propertyManager.getString(OptionalKey.relativePath, "");
 
-        Map<String, TableData> tables = new HashMap<>();
+        Map<String, TableData> tables = new TreeMap<>();
         TableData tableData = new TableData(propertyManager);
         if (setContext.length() > 0) {
             tableData.setTableHeader("Reports (Data Context: " + setContext + ")");
@@ -116,6 +116,7 @@ public class ReportingOverviewStep extends AbstractDirectProcessStep<Map<String,
         int n = 1;
         Map<String, TableData> dataCache = step.getOutputDataCache();
         for (String key : dataCache.keySet()) {
+            System.out.println("xxxx " + key);
             String url = relativePath + stepID + File.separatorChar + key.replaceAll("\\..+$", "");
             UrlContent urlContent = new UrlContent(url, dataCache.get(key).getDescription());
             table.setCell(new Cell().addStyle(cellLeft).setContent(urlContent), row++, 0);

@@ -74,7 +74,7 @@ public class TypeListStep extends AbstractDirectTableDataStep {
         int minimumLevel = propertyManager.getInt(OptionalKey.minimumLevel, 0);
         String setContext = propertyManager.getString(OptionalKey.setContext, "");
 
-        Map<String, TableData> tables = new HashMap<>();
+        Map<String, TableData> tables = new TreeMap<>();
 
         for (TypeDimension typeDimension : TypeDimension.values()) {
             for (String typeName : DataConfiguration.getInstance().get(typeDimension).keySet()) {

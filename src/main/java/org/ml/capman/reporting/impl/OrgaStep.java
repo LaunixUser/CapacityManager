@@ -1,9 +1,9 @@
 package org.ml.capman.reporting.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -67,7 +67,7 @@ public class OrgaStep extends AbstractDirectTableDataStep {
             throw new IllegalArgumentException("employeeData may not be null");
         }
 
-        Map<String, TableData> tables = new HashMap<>();
+        Map<String, TableData> tables = new TreeMap<>();
         String rootFileName = ORG_PREFIX + employeeData.getRootEmployee().getID();
 
         assembleContextData(tables, employeeData.getRootEmployee(), rootFileName);

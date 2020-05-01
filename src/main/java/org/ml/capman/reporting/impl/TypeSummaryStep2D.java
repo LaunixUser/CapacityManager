@@ -2,6 +2,7 @@ package org.ml.capman.reporting.impl;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.logging.Logger;
 
 import org.ml.tools.PropertyManager;
@@ -62,7 +63,7 @@ public class TypeSummaryStep2D extends AbstractDirectTableDataStep {
         String setContext = propertyManager.getString(OptionalKey.setContext, "");
         DataConfiguration configuration = DataConfiguration.getInstance();
 
-        Map<String, TableData> tables = new HashMap<>();
+        Map<String, TableData> tables = new TreeMap<>();
 
         for (TypeDimension typeDimension1 : TypeDimension.values()) {
             for (String typeName1 : configuration.get(typeDimension1).keySet()) {

@@ -1,9 +1,9 @@
 package org.ml.capman.reporting.impl;
 
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -116,7 +116,7 @@ public class EmployeeTypeKindStep extends AbstractDirectTableDataStep {
             throw new NullPointerException("employeeData may not be null");
         }
 
-        Map<String, TableData> tables = new HashMap<>();
+        Map<String, TableData> tables = new TreeMap<>();
         String setContext = propertyManager.getString(OptionalKey.setContext, "");
 
         TableData tableData = new TableData(propertyManager);

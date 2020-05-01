@@ -76,7 +76,8 @@ public class TypeListStep2D extends AbstractDirectTableDataStep {
 
         DataConfiguration configuration = DataConfiguration.getInstance();
 
-        Map<String, TableData> tables = new HashMap<>();
+        Map<String, TableData> tables = new TreeMap<>();
+        
         for (TypeDimension typeDimension1 : TypeDimension.values()) {
             for (String typeName1 : configuration.get(typeDimension1).keySet()) {
                 IType type1 = configuration.get(typeDimension1).get(typeName1);

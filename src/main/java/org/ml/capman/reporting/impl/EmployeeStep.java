@@ -1,8 +1,7 @@
 package org.ml.capman.reporting.impl;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
+import java.util.TreeMap;
 import java.util.logging.Logger;
 
 import org.ml.tools.PropertyManager;
@@ -17,7 +16,6 @@ import org.ml.capman.EmployeeData;
 import org.ml.capman.IType;
 import org.ml.capman.reporting.AbstractDirectTableDataStep;
 
-import static org.ml.capman.render.experimental.AbstractTableCreator.*;
 import static org.ml.capman.render.RenderingType.*;
 
 import org.ml.pf.output.TableData;
@@ -57,7 +55,7 @@ public class EmployeeStep extends AbstractDirectTableDataStep {
             throw new IllegalArgumentException("employeeData may not be null");
         }
 
-        Map<String, TableData> tables = new HashMap<>();
+        Map<String, TableData> tables = new TreeMap<>();
         for (Employee employee : employeeData.getEmployees()) {
 
             TableData tableData = new TableData(propertyManager);
