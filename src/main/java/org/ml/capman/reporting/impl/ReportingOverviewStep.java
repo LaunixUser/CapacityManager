@@ -116,7 +116,6 @@ public class ReportingOverviewStep extends AbstractDirectProcessStep<Map<String,
         int n = 1;
         Map<String, TableData> dataCache = step.getOutputDataCache();
         for (String key : dataCache.keySet()) {
-            System.out.println("xxxx " + key);
             String url = relativePath + stepID + File.separatorChar + key.replaceAll("\\..+$", "");
             UrlContent urlContent = new UrlContent(url, dataCache.get(key).getDescription());
             table.setCell(new Cell().addStyle(cellLeft).setContent(urlContent), row++, 0);

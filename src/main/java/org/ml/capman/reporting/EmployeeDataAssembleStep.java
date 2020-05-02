@@ -76,6 +76,10 @@ public class EmployeeDataAssembleStep extends AbstractTransferProcessStep<Map<St
             throw new IllegalArgumentException("employeeDataMap may not be null");
         }
 
+        for (String key : employeeDataMap.keySet()) {
+            LOGGER.log(Level.INFO, "employeeDataMap key = ''{0}'' - employeeData size = ''{1}", new Object[]{key, employeeDataMap.get(key).getEmployees().size()});
+        }
+
         EmployeeData<Employee> output;
 
         //.... If we have several elements to assemble to a tree, start here
@@ -89,6 +93,7 @@ public class EmployeeDataAssembleStep extends AbstractTransferProcessStep<Map<St
             for (String id : treeLinkData.getLinkData().keySet()) {
 
                 TreeLink treeLink = treeLinkData.getLinkData().get(id);
+                LOGGER.log(Level.INFO, "Working on treeLink: ''{0}''", treeLink.getSummary());
 
                 String childNodeID = treeLink.getChildNodeID();
                 String parentNodeID = treeLink.getParentNodeID();
