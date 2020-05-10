@@ -24,8 +24,7 @@ import static org.ml.capman.render.RenderingType.*;
 import org.ml.pf.output.TableData;
 import org.ml.table.Cell;
 import org.ml.table.Table;
-
-import static org.ml.table.render.IRenderer.HINT_PERCENTAGE;
+import static org.ml.table.output.impl.Style.HINT_PERCENTAGE;
 
 /**
  * @author mlaux
@@ -197,10 +196,10 @@ public class TypeSummaryStep2D extends AbstractDirectTableDataStep {
                 table.setCell(new Cell().addStyle(cellCenterEmpty).setContent(subtotals.get(capacityType)), row, col++);
             }
             if (type1.getTypeDimension().equals(One) && type2.getTypeDimension().equals(One)) {
-                table.setCell(new Cell().addStyle(cellCenterEmpty).setContent((double) subcount / (double) summaryData.getTotalCount()).addType(HINT_PERCENTAGE), row, col++);
+                table.setCell(new Cell().addStyle(cellCenterEmpty).setContent((double) subcount / (double) summaryData.getTotalCount()).addStyle(HINT_PERCENTAGE), row, col++);
             }
             for (CapacityType capacityType : CapacityType.values()) {
-                table.setCell(new Cell().addStyle(cellCenterEmpty).setContent(subtotals.get(capacityType) / summaryData.getTotal().get(capacityType)).addType(HINT_PERCENTAGE), row, col++);
+                table.setCell(new Cell().addStyle(cellCenterEmpty).setContent(subtotals.get(capacityType) / summaryData.getTotal().get(capacityType)).addStyle(HINT_PERCENTAGE), row, col++);
             }
 
             n++;
