@@ -192,14 +192,14 @@ public class TypeClusterView2D extends AbstractDirectTableDataStep {
             //.... This may require generalization for other data types ... this just avoids empty headers
             if (primaryKey1 instanceof String) {
                 if (((String) primaryKey1).length() == 0) {
-                    table.setCell(new Cell(1, headerWidth).addStyle(cellLeftEmpty).setContent(UNASSIGNED), row++, col);
+                    table.setCell(new Cell(1, headerWidth).setStyle(cellLeftEmpty).setContent(UNASSIGNED), row++, col);
                 } else {
-                    table.setCell(new Cell(1, headerWidth).addStyle(cellLeftEmpty).setContent(primaryKey1), row++, col);
+                    table.setCell(new Cell(1, headerWidth).setStyle(cellLeftEmpty).setContent(primaryKey1), row++, col);
                 }
             } else {
-                table.setCell(new Cell(1, headerWidth).addStyle(cellLeftEmpty).setContent(primaryKey1), row++, col);
+                table.setCell(new Cell(1, headerWidth).setStyle(cellLeftEmpty).setContent(primaryKey1), row++, col);
             }
-            table.setCell(new Cell(1, headerWidth).addStyle(cellLeftEmpty), row++, col);
+            table.setCell(new Cell(1, headerWidth).setStyle(cellLeftEmpty), row++, col);
             table.setCell(new Cell(1, headerWidth), row++, col);
 
             int tableCount = 0;
@@ -261,46 +261,46 @@ public class TypeClusterView2D extends AbstractDirectTableDataStep {
         //.... Header of subtable
         if (primaryKey2 instanceof String) {
             if (((String) primaryKey2).length() == 0) {
-                table.setCell(new Cell(1, w2).addStyle(cellLeftBold).setContent(UNASSIGNED), row++, col);
+                table.setCell(new Cell(1, w2).setStyle(cellLeftBold).setContent(UNASSIGNED), row++, col);
             } else {
-                table.setCell(new Cell(1, w2).addStyle(cellLeftBold).setContent(primaryKey2), row++, col);
+                table.setCell(new Cell(1, w2).setStyle(cellLeftBold).setContent(primaryKey2), row++, col);
             }
         } else {
-            table.setCell(new Cell(1, w2).addStyle(cellLeftBold).setContent(primaryKey2), row++, col);
+            table.setCell(new Cell(1, w2).setStyle(cellLeftBold).setContent(primaryKey2), row++, col);
         }
 
         //.... Columns of subtable        
-        table.setCell(new Cell().addStyle(cellLeftLight).setContent("#"), row, col++);
-        table.setCell(new Cell().addStyle(cellLeftLight).setContent("Employee"), row, col++);
-        table.setCell(new Cell().addStyle(cellLeftLight).setContent("ID"), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftLight).setContent("#"), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftLight).setContent("Employee"), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftLight).setContent("ID"), row, col++);
         for (IType type : outputTypes) {
-            table.setCell(new Cell().addStyle(cellLeftLight).setContent(type.toString()), row, col++);
+            table.setCell(new Cell().setStyle(cellLeftLight).setContent(type.toString()), row, col++);
         }
-        table.setCell(new Cell().addStyle(cellLeftLight).setContent("Manager"), row, col++);
-        table.setCell(new Cell().addStyle(cellLeftLight).setContent("ID"), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftLight).setContent("Manager"), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftLight).setContent("ID"), row, col++);
         for (IType type : outputTypes) {
-            table.setCell(new Cell().addStyle(cellLeftLight).setContent(type.toString()), row, col++);
+            table.setCell(new Cell().setStyle(cellLeftLight).setContent(type.toString()), row, col++);
         }
         row++;
 
         //.... Subtable data
         col = 0;
         for (Employee employee : employees.get(primaryKey1).get(primaryKey2)) {
-            table.setCell(new Cell().addStyle(cellCenter).setContent(n++), row, col++);
-            table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
-            table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_ID)), row, col++);
+            table.setCell(new Cell().setStyle(cellCenter).setContent(n++), row, col++);
+            table.setCell(new Cell().setStyle(cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
+            table.setCell(new Cell().setStyle(cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_ID)), row, col++);
             for (IType type : outputTypes) {
-                table.setCell(new Cell().addStyle(cellLeft).setContent(employee.get(type)), row, col++);
+                table.setCell(new Cell().setStyle(cellLeft).setContent(employee.get(type)), row, col++);
             }
             if (employee.hasManager()) {
-                table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
-                table.setCell(new Cell().addStyle(cellCenter).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.ORGA_ID)), row, col++);
+                table.setCell(new Cell().setStyle(cellLeft).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
+                table.setCell(new Cell().setStyle(cellCenter).setContent(employee.getManager().getUrl(Employee.EmployeeUrl.ORGA_ID)), row, col++);
                 for (IType type : outputTypes) {
-                    table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getManager().get(type)), row, col++);
+                    table.setCell(new Cell().setStyle(cellLeft).setContent(employee.getManager().get(type)), row, col++);
                 }
             } else {
                 for (int i = 0; i < w1; i++) {
-                    table.setCell(new Cell().addStyle(cellLeft).setContent(""), row, col++);
+                    table.setCell(new Cell().setStyle(cellLeft).setContent(""), row, col++);
                 }
             }
             row++;

@@ -24,7 +24,7 @@ import static org.ml.capman.render.RenderingType.*;
 import org.ml.pf.output.TableData;
 import org.ml.table.Cell;
 import org.ml.table.Table;
-import static org.ml.table.output.impl.Style.HINT_PERCENTAGE;
+import static org.ml.table.output.Hint.HINT_PERCENTAGE;
 
 /**
  * @author mlaux
@@ -124,21 +124,21 @@ public class TypeSummaryStep2D extends AbstractDirectTableDataStep {
         int col = 0;
 
         //.... Header
-        table.setCell(new Cell().addStyle(cellCenterBold).setContent("#1"), row, col++);
-        table.setCell(new Cell().addStyle(cellLeftBold).setContent(type1.getTypeName()), row, col++);
-        table.setCell(new Cell().addStyle(cellLeftBold).setContent("#2"), row, col++);
-        table.setCell(new Cell().addStyle(cellLeftBold).setContent(type2.getTypeName()), row, col++);
+        table.setCell(new Cell().setStyle(cellCenterBold).setContent("#1"), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftBold).setContent(type1.getTypeName()), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftBold).setContent("#2"), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftBold).setContent(type2.getTypeName()), row, col++);
         if (type1.getTypeDimension().equals(One) && type2.getTypeDimension().equals(One)) {
-            table.setCell(new Cell().addStyle(cellLeftBold).setContent("Count"), row, col++);
+            table.setCell(new Cell().setStyle(cellLeftBold).setContent("Count"), row, col++);
         }
         for (CapacityType capacityType : CapacityType.values()) {
-            table.setCell(new Cell().addStyle(cellLeftBold).setContent(capacityType), row, col++);
+            table.setCell(new Cell().setStyle(cellLeftBold).setContent(capacityType), row, col++);
         }
         if (type1.getTypeDimension().equals(One) && type2.getTypeDimension().equals(One)) {
-            table.setCell(new Cell().addStyle(cellLeftBold).setContent("Count %"), row, col++);
+            table.setCell(new Cell().setStyle(cellLeftBold).setContent("Count %"), row, col++);
         }
         for (CapacityType capacityType : CapacityType.values()) {
-            table.setCell(new Cell().addStyle(cellLeftBold).setContent(capacityType + " %"), row, col++);
+            table.setCell(new Cell().setStyle(cellLeftBold).setContent(capacityType + " %"), row, col++);
         }
 
         //.... Body
@@ -161,25 +161,25 @@ public class TypeSummaryStep2D extends AbstractDirectTableDataStep {
                 Map<CapacityType, Double> data = summaryData.get(primaryKey1, primaryKey2);
 
                 Map<CapacityType, Double> percentData = summaryData.getPercent(primaryKey1, primaryKey2);
-                table.setCell(new Cell().addStyle(cellCenter).setContent(n), row, col++);
-                table.setCell(new Cell().addStyle(cellLeft).setContent(primaryKey1), row, col++);
-                table.setCell(new Cell().addStyle(cellCenter).setContent(m), row, col++);
-                table.setCell(new Cell().addStyle(cellLeft).setContent(primaryKey2), row, col++);
+                table.setCell(new Cell().setStyle(cellCenter).setContent(n), row, col++);
+                table.setCell(new Cell().setStyle(cellLeft).setContent(primaryKey1), row, col++);
+                table.setCell(new Cell().setStyle(cellCenter).setContent(m), row, col++);
+                table.setCell(new Cell().setStyle(cellLeft).setContent(primaryKey2), row, col++);
                 if (type1.getTypeDimension().equals(One) && type2.getTypeDimension().equals(One)) {
-                    table.setCell(new Cell().addStyle(cellCenter).setContent(summaryData.getCount(primaryKey1, primaryKey2)), row, col++);
+                    table.setCell(new Cell().setStyle(cellCenter).setContent(summaryData.getCount(primaryKey1, primaryKey2)), row, col++);
                 }
                 for (CapacityType capacityType : CapacityType.values()) {
-                    table.setCell(new Cell().addStyle(cellCenter).setContent(data.get(capacityType)), row, col++);
+                    table.setCell(new Cell().setStyle(cellCenter).setContent(data.get(capacityType)), row, col++);
                     double d = subtotals.get(capacityType);
                     subtotals.put(capacityType, data.get(capacityType) + d);
                 }
                 subcount += summaryData.getCount(primaryKey1, primaryKey2);
 
                 if (type1.getTypeDimension().equals(One) && type2.getTypeDimension().equals(One)) {
-                    table.setCell(new Cell().addStyle(cellCenter).setContent(100.0d * summaryData.getCountPercent(primaryKey1, primaryKey2)), row, col++);
+                    table.setCell(new Cell().setStyle(cellCenter).setContent(100.0d * summaryData.getCountPercent(primaryKey1, primaryKey2)), row, col++);
                 }
                 for (CapacityType capacityType : CapacityType.values()) {
-                    table.setCell(new Cell().addStyle(cellCenter).setContent(100.0d * percentData.get(capacityType)), row, col++);
+                    table.setCell(new Cell().setStyle(cellCenter).setContent(100.0d * percentData.get(capacityType)), row, col++);
                 }
                 m++;
             }
@@ -187,19 +187,19 @@ public class TypeSummaryStep2D extends AbstractDirectTableDataStep {
             //.... Subtotals
             row++;
             col = 0;
-            table.setCell(new Cell(1, 4).addStyle(cellLeftEmpty).setContent("Subtotals"), row, col);
+            table.setCell(new Cell(1, 4).setStyle(cellLeftEmpty).setContent("Subtotals"), row, col);
             col += 4;
             if (type1.getTypeDimension().equals(One) && type2.getTypeDimension().equals(One)) {
-                table.setCell(new Cell().addStyle(cellCenterEmpty).setContent(subcount), row, col++);
+                table.setCell(new Cell().setStyle(cellCenterEmpty).setContent(subcount), row, col++);
             }
             for (CapacityType capacityType : CapacityType.values()) {
-                table.setCell(new Cell().addStyle(cellCenterEmpty).setContent(subtotals.get(capacityType)), row, col++);
+                table.setCell(new Cell().setStyle(cellCenterEmpty).setContent(subtotals.get(capacityType)), row, col++);
             }
             if (type1.getTypeDimension().equals(One) && type2.getTypeDimension().equals(One)) {
-                table.setCell(new Cell().addStyle(cellCenterEmpty).setContent((double) subcount / (double) summaryData.getTotalCount()).addStyle(HINT_PERCENTAGE), row, col++);
+                table.setCell(new Cell().setStyle(cellCenterEmpty).setContent((double) subcount / (double) summaryData.getTotalCount()).addHint(HINT_PERCENTAGE), row, col++);
             }
             for (CapacityType capacityType : CapacityType.values()) {
-                table.setCell(new Cell().addStyle(cellCenterEmpty).setContent(subtotals.get(capacityType) / summaryData.getTotal().get(capacityType)).addStyle(HINT_PERCENTAGE), row, col++);
+                table.setCell(new Cell().setStyle(cellCenterEmpty).setContent(subtotals.get(capacityType) / summaryData.getTotal().get(capacityType)).addHint(HINT_PERCENTAGE), row, col++);
             }
 
             n++;
@@ -208,19 +208,19 @@ public class TypeSummaryStep2D extends AbstractDirectTableDataStep {
         //.... Totals
         row++;
         col = 0;
-        table.setCell(new Cell(1, 4).addStyle(cellLeftEmpty).setContent("Totals"), row, col);
+        table.setCell(new Cell(1, 4).setStyle(cellLeftEmpty).setContent("Totals"), row, col);
         col += 4;
         Map<CapacityType, Double> totalData = summaryData.getTotal();
         if (type1.getTypeDimension().equals(One) && type2.getTypeDimension().equals(One)) {
-            table.setCell(new Cell().addStyle(cellCenterEmpty).setContent(summaryData.getTotalCount()), row, col++);
+            table.setCell(new Cell().setStyle(cellCenterEmpty).setContent(summaryData.getTotalCount()), row, col++);
         }
         for (CapacityType capacityType : CapacityType.values()) {
-            table.setCell(new Cell().addStyle(cellCenterEmpty).setContent(totalData.get(capacityType)), row, col++);
+            table.setCell(new Cell().setStyle(cellCenterEmpty).setContent(totalData.get(capacityType)), row, col++);
         }
         if (type1.getTypeDimension().equals(One) && type2.getTypeDimension().equals(One)) {
-            table.setCell(new Cell(1, 1).addStyle(cellCenterEmpty), row, col++);
+            table.setCell(new Cell(1, 1).setStyle(cellCenterEmpty), row, col++);
         }
-        table.setCell(new Cell(1, CapacityType.values().length).addStyle(cellCenterEmpty), row, col);
+        table.setCell(new Cell(1, CapacityType.values().length).setStyle(cellCenterEmpty), row, col);
 
         table.compact();
         return table;

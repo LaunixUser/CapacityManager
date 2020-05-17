@@ -100,20 +100,20 @@ public class EmployeeStep extends AbstractDirectTableDataStep {
         int row = 0;
         int col = 0;
 
-        table1.setCell(new Cell().addStyle(cellLeftBold).setContent("ID"), row, col++);
-        table1.setCell(new Cell().addStyle(cellLeftBold).setContent("Employee"), row, col++);
+        table1.setCell(new Cell().setStyle(cellLeftBold).setContent("ID"), row, col++);
+        table1.setCell(new Cell().setStyle(cellLeftBold).setContent("Employee"), row, col++);
         for (IType type : DataConfiguration.getInstance().get(One).values()) {
-            table1.setCell(new Cell().addStyle(cellLeftBold).setContent(type.getTypeName()), row, col++);
+            table1.setCell(new Cell().setStyle(cellLeftBold).setContent(type.getTypeName()), row, col++);
         }
         row++;
         col = 0;
-        table1.setCell(new Cell().addStyle(cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_ID)), row, col++);
-        table1.setCell(new Cell().addStyle(cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
+        table1.setCell(new Cell().setStyle(cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_ID)), row, col++);
+        table1.setCell(new Cell().setStyle(cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
         for (IType type : DataConfiguration.getInstance().get(One).values()) {
             if (employee.get(type) != null) {
-                table1.setCell(new Cell().addStyle(cellLeft).setContent(employee.get(type)), row, col++);
+                table1.setCell(new Cell().setStyle(cellLeft).setContent(employee.get(type)), row, col++);
             } else {
-                table1.setCell(new Cell().addStyle(cellLeft).setContent(UNDEFINED), row, col++);
+                table1.setCell(new Cell().setStyle(cellLeft).setContent(UNDEFINED), row, col++);
             }
         }
 
@@ -125,12 +125,12 @@ public class EmployeeStep extends AbstractDirectTableDataStep {
         col = 0;
 
         for (CapacityType capacityType : CapacityType.values()) {
-            table2.setCell(new Cell().addStyle(cellLeftBold).setContent(capacityType), row, col++);
+            table2.setCell(new Cell().setStyle(cellLeftBold).setContent(capacityType), row, col++);
         }
         row++;
         col = 0;
         for (CapacityType capacityType : CapacityType.values()) {
-            table2.setCell(new Cell().addStyle(cellCenter).setContent(employee.getCapacity(capacityType)), row, col++);
+            table2.setCell(new Cell().setStyle(cellCenter).setContent(employee.getCapacity(capacityType)), row, col++);
         }
 
         //.... 2D Values
@@ -141,27 +141,27 @@ public class EmployeeStep extends AbstractDirectTableDataStep {
         row = 0;
         col = 0;
 
-        table3.setCell(new Cell().addStyle(cellLeftBold).setContent("Type"), row, col++);
-        table3.setCell(new Cell().addStyle(cellLeftBold).setContent("Field"), row, col++);
-        table3.setCell(new Cell().addStyle(cellLeftBold).setContent("Value"), row, col++);
+        table3.setCell(new Cell().setStyle(cellLeftBold).setContent("Type"), row, col++);
+        table3.setCell(new Cell().setStyle(cellLeftBold).setContent("Field"), row, col++);
+        table3.setCell(new Cell().setStyle(cellLeftBold).setContent("Value"), row, col++);
 
         row++;
         col = 0;
         for (IType type : DataConfiguration.getInstance().get(Two).values()) {
             for (String field : employee.getFields(type).keySet()) {
 
-                table3.setCell(new Cell().addStyle(cellLeft).setContent(type.getTypeName()), row, col++);
-                table3.setCell(new Cell().addStyle(cellLeft).setContent(field), row, col++);
+                table3.setCell(new Cell().setStyle(cellLeft).setContent(type.getTypeName()), row, col++);
+                table3.setCell(new Cell().setStyle(cellLeft).setContent(field), row, col++);
 
                 if (employee.get(type, field) != null) {
 
                     if (type.getTypeKind().isPercentage()) {
-                        table3.setCell(new Cell().addStyle(cellLeft).setContent(employee.get(type, field) + "%"), row, col++);
+                        table3.setCell(new Cell().setStyle(cellLeft).setContent(employee.get(type, field) + "%"), row, col++);
                     } else {
-                        table3.setCell(new Cell().addStyle(cellLeft).setContent(employee.get(type, field)), row, col++);
+                        table3.setCell(new Cell().setStyle(cellLeft).setContent(employee.get(type, field)), row, col++);
                     }
                 } else {
-                    table3.setCell(new Cell().addStyle(cellLeft).setContent(UNDEFINED), row, col++);
+                    table3.setCell(new Cell().setStyle(cellLeft).setContent(UNDEFINED), row, col++);
                 }
 
                 row++;
@@ -177,11 +177,11 @@ public class EmployeeStep extends AbstractDirectTableDataStep {
             row = 0;
             col = 0;
 
-            table4.setCell(new Cell().addStyle(cellLeftBold).setContent("#"), row, col++);
-            table4.setCell(new Cell().addStyle(cellLeftBold).setContent("ID"), row, col++);
-            table4.setCell(new Cell().addStyle(cellLeftBold).setContent("Employee"), row, col++);
+            table4.setCell(new Cell().setStyle(cellLeftBold).setContent("#"), row, col++);
+            table4.setCell(new Cell().setStyle(cellLeftBold).setContent("ID"), row, col++);
+            table4.setCell(new Cell().setStyle(cellLeftBold).setContent("Employee"), row, col++);
             for (IType type : DataConfiguration.getInstance().get(One).values()) {
-                table4.setCell(new Cell().addStyle(cellLeftBold).setContent(type.getTypeName()), row, col++);
+                table4.setCell(new Cell().setStyle(cellLeftBold).setContent(type.getTypeName()), row, col++);
             }
             row++;
 
@@ -189,14 +189,14 @@ public class EmployeeStep extends AbstractDirectTableDataStep {
             for (String employeeID : employee.getEmployees().keySet()) {
                 Employee staffMember = employee.getEmployees().get(employeeID);
                 col = 0;
-                table4.setCell(new Cell().addStyle(cellLeft).setContent(n++), row, col++);
-                table4.setCell(new Cell().addStyle(cellLeft).setContent(staffMember.getUrl(Employee.EmployeeUrl.DATA_ID)), row, col++);
-                table4.setCell(new Cell().addStyle(cellLeft).setContent(staffMember.getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
+                table4.setCell(new Cell().setStyle(cellLeft).setContent(n++), row, col++);
+                table4.setCell(new Cell().setStyle(cellLeft).setContent(staffMember.getUrl(Employee.EmployeeUrl.DATA_ID)), row, col++);
+                table4.setCell(new Cell().setStyle(cellLeft).setContent(staffMember.getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
                 for (IType type : DataConfiguration.getInstance().get(One).values()) {
                     if (staffMember.get(type) != null) {
-                        table4.setCell(new Cell().addStyle(cellLeft).setContent(staffMember.get(type)), row, col++);
+                        table4.setCell(new Cell().setStyle(cellLeft).setContent(staffMember.get(type)), row, col++);
                     } else {
-                        table4.setCell(new Cell().addStyle(cellLeft).setContent(UNDEFINED), row, col++);
+                        table4.setCell(new Cell().setStyle(cellLeft).setContent(UNDEFINED), row, col++);
                     }
                 }
                 row++;

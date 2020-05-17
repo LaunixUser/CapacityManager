@@ -119,15 +119,15 @@ public class TypeSummaryStep extends AbstractDirectTableDataStep {
         int col = 0;
 
         //.... Header
-        table.setCell(new Cell().addStyle(cellCenterBold).setContent("#"), row, col++);
-        table.setCell(new Cell().addStyle(cellLeftBold).setContent(type.getTypeName()), row, col++);
-        table.setCell(new Cell().addStyle(cellLeftBold).setContent("Count"), row, col++);
+        table.setCell(new Cell().setStyle(cellCenterBold).setContent("#"), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftBold).setContent(type.getTypeName()), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftBold).setContent("Count"), row, col++);
         for (CapacityType capacityType : CapacityType.values()) {
-            table.setCell(new Cell().addStyle(cellLeftBold).setContent(capacityType), row, col++);
+            table.setCell(new Cell().setStyle(cellLeftBold).setContent(capacityType), row, col++);
         }
-        table.setCell(new Cell().addStyle(cellLeftBold).setContent("Count %"), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftBold).setContent("Count %"), row, col++);
         for (CapacityType capacityType : CapacityType.values()) {
-            table.setCell(new Cell().addStyle(cellLeftBold).setContent(capacityType + " %"), row, col++);
+            table.setCell(new Cell().setStyle(cellLeftBold).setContent(capacityType + " %"), row, col++);
         }
         //.... Body
         int n = 1;
@@ -136,32 +136,32 @@ public class TypeSummaryStep extends AbstractDirectTableDataStep {
             col = 0;
             Map<CapacityType, Double> data = summaryData.get(primaryKey);
             Map<CapacityType, Double> percentData = summaryData.getPercent(primaryKey);
-            table.setCell(new Cell().addStyle(cellCenter).setContent(n), row, col++);
-            table.setCell(new Cell().addStyle(cellLeft).setContent(primaryKey), row, col++);
-            table.setCell(new Cell().addStyle(cellCenter).setContent(summaryData.getCount(primaryKey)), row, col++);
+            table.setCell(new Cell().setStyle(cellCenter).setContent(n), row, col++);
+            table.setCell(new Cell().setStyle(cellLeft).setContent(primaryKey), row, col++);
+            table.setCell(new Cell().setStyle(cellCenter).setContent(summaryData.getCount(primaryKey)), row, col++);
             for (CapacityType capacityType : CapacityType.values()) {
-                table.setCell(new Cell().addStyle(cellCenter).setContent(data.get(capacityType)), row, col++);
+                table.setCell(new Cell().setStyle(cellCenter).setContent(data.get(capacityType)), row, col++);
             }
-            table.setCell(new Cell().addStyle(cellCenter).setContent(100.0d * summaryData.getCountPercent(primaryKey)), row, col++);
+            table.setCell(new Cell().setStyle(cellCenter).setContent(100.0d * summaryData.getCountPercent(primaryKey)), row, col++);
             for (CapacityType capacityType : CapacityType.values()) {
-                table.setCell(new Cell().addStyle(cellCenter).setContent(100.0d * percentData.get(capacityType)), row, col++);
+                table.setCell(new Cell().setStyle(cellCenter).setContent(100.0d * percentData.get(capacityType)), row, col++);
             }
             n++;
         }
 
         row++;
         col = 0;
-        table.setCell(new Cell(1, 2).addStyle(cellLeftEmpty).setContent("Totals"), row, col++);
+        table.setCell(new Cell(1, 2).setStyle(cellLeftEmpty).setContent("Totals"), row, col++);
         col++;
         if (type.getTypeDimension().equals(One)) {
-            table.setCell(new Cell().addStyle(cellCenterEmpty).setContent(summaryData.getTotalCount()), row, col++);
+            table.setCell(new Cell().setStyle(cellCenterEmpty).setContent(summaryData.getTotalCount()), row, col++);
         } else {
-            table.setCell(new Cell().addStyle(cellCenterEmpty), row, col++);
+            table.setCell(new Cell().setStyle(cellCenterEmpty), row, col++);
         }
         for (CapacityType capacityType : CapacityType.values()) {
-            table.setCell(new Cell().addStyle(cellCenterEmpty).setContent(summaryData.getTotal().get(capacityType)), row, col++);
+            table.setCell(new Cell().setStyle(cellCenterEmpty).setContent(summaryData.getTotal().get(capacityType)), row, col++);
         }
-        table.setCell(new Cell(1, CapacityType.values().length + 1).addStyle(cellCenterEmpty), row, col++);
+        table.setCell(new Cell(1, CapacityType.values().length + 1).setStyle(cellCenterEmpty), row, col++);
 
         table.compact();
         return table;

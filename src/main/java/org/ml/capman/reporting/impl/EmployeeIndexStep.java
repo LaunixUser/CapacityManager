@@ -116,18 +116,18 @@ public class EmployeeIndexStep extends AbstractDirectTableDataStep {
         int col = 0;
 
         //.... Header
-        table.setCell(new Cell().addStyle(cellLeftBold).setContent("#"), row, col++);
-        table.setCell(new Cell().addStyle(cellLeftBold).setContent("Employee"), row, col++);
-        table.setCell(new Cell().addStyle(cellLeftBold).setContent("ID"), row, col++);
-        table.setCell(new Cell().addStyle(cellLeftBold).setContent("Org"), row, col++);
-        table.setCell(new Cell().addStyle(cellLeftBold).setContent("Manager"), row, col++);
-        table.setCell(new Cell().addStyle(cellLeftBold).setContent("ID"), row, col++);
-        table.setCell(new Cell().addStyle(cellLeftBold).setContent("Org"), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftBold).setContent("#"), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftBold).setContent("Employee"), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftBold).setContent("ID"), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftBold).setContent("Org"), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftBold).setContent("Manager"), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftBold).setContent("ID"), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftBold).setContent("Org"), row, col++);
         for (IType type : outputTypes) {
-            table.setCell(new Cell().addStyle(cellLeftBold).setContent(type.toString()), row, col++);
+            table.setCell(new Cell().setStyle(cellLeftBold).setContent(type.toString()), row, col++);
         }
         for (CapacityType capacityType : CapacityType.values()) {
-            table.setCell(new Cell().addStyle(cellLeftBold).setContent(capacityType.toString()), row, col++);
+            table.setCell(new Cell().setStyle(cellLeftBold).setContent(capacityType.toString()), row, col++);
         }
 
         //.... Data
@@ -137,28 +137,28 @@ public class EmployeeIndexStep extends AbstractDirectTableDataStep {
             row++;
             col = 0;
 
-            table.setCell(new Cell().addStyle(cellLeft).setContent(n++), row, col++);
-            table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getUrl(EmployeeUrl.DATA_NAME)), row, col++);
-            table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getUrl(EmployeeUrl.DATA_ID)), row, col++);
+            table.setCell(new Cell().setStyle(cellLeft).setContent(n++), row, col++);
+            table.setCell(new Cell().setStyle(cellLeft).setContent(employee.getUrl(EmployeeUrl.DATA_NAME)), row, col++);
+            table.setCell(new Cell().setStyle(cellLeft).setContent(employee.getUrl(EmployeeUrl.DATA_ID)), row, col++);
             if (employee.getEmployees().size() > 0) {
-                table.setCell(new Cell().addStyle(cellCenter).setContent(employee.getUrl(EmployeeUrl.ORGA_X)), row, col++);
+                table.setCell(new Cell().setStyle(cellCenter).setContent(employee.getUrl(EmployeeUrl.ORGA_X)), row, col++);
             } else {
-                table.setCell(new Cell().addStyle(cellLeft).setContent(""), row, col++);
+                table.setCell(new Cell().setStyle(cellLeft).setContent(""), row, col++);
             }
             if (employee.hasManager()) {
-                table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getManager().getUrl(EmployeeUrl.DATA_NAME)), row, col++);
-                table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getManager().getUrl(EmployeeUrl.DATA_ID)), row, col++);
-                table.setCell(new Cell().addStyle(cellCenter).setContent(employee.getManager().getUrl(EmployeeUrl.ORGA_X)), row, col++);
+                table.setCell(new Cell().setStyle(cellLeft).setContent(employee.getManager().getUrl(EmployeeUrl.DATA_NAME)), row, col++);
+                table.setCell(new Cell().setStyle(cellLeft).setContent(employee.getManager().getUrl(EmployeeUrl.DATA_ID)), row, col++);
+                table.setCell(new Cell().setStyle(cellCenter).setContent(employee.getManager().getUrl(EmployeeUrl.ORGA_X)), row, col++);
             } else {
-                table.setCell(new Cell().addStyle(cellLeft).setContent(""), row, col++);
-                table.setCell(new Cell().addStyle(cellLeft).setContent(""), row, col++);
-                table.setCell(new Cell().addStyle(cellLeft).setContent(""), row, col++);
+                table.setCell(new Cell().setStyle(cellLeft).setContent(""), row, col++);
+                table.setCell(new Cell().setStyle(cellLeft).setContent(""), row, col++);
+                table.setCell(new Cell().setStyle(cellLeft).setContent(""), row, col++);
             }
             for (IType type : outputTypes) {
-                table.setCell(new Cell().addStyle(cellLeft).setContent(employee.get(type)), row, col++);
+                table.setCell(new Cell().setStyle(cellLeft).setContent(employee.get(type)), row, col++);
             }
             for (CapacityType capacityType : CapacityType.values()) {
-                table.setCell(new Cell().addStyle(cellCenter).setContent(employee.getCapacity(capacityType)), row, col++);
+                table.setCell(new Cell().setStyle(cellCenter).setContent(employee.getCapacity(capacityType)), row, col++);
             }
         }
 

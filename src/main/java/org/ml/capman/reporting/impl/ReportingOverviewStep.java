@@ -110,7 +110,7 @@ public class ReportingOverviewStep extends AbstractDirectProcessStep<Map<String,
         int col = 0;
 
         //.... Header
-        table.setCell(new Cell().addStyle(cellLeftBold).setContent(step.getSetDescription()), row++, 0);
+        table.setCell(new Cell().setStyle(cellLeftBold).setContent(step.getSetDescription()), row++, 0);
 
         //.... Data
         int n = 1;
@@ -118,7 +118,7 @@ public class ReportingOverviewStep extends AbstractDirectProcessStep<Map<String,
         for (String key : dataCache.keySet()) {
             String url = relativePath + stepID + File.separatorChar + key.replaceAll("\\..+$", "");
             UrlContent urlContent = new UrlContent(url, dataCache.get(key).getDescription());
-            table.setCell(new Cell().addStyle(cellLeft).setContent(urlContent), row++, 0);
+            table.setCell(new Cell().setStyle(cellLeft).setContent(urlContent), row++, 0);
         }
 
         table.compact();

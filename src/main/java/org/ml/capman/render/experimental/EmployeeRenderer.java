@@ -51,20 +51,20 @@ public class EmployeeRenderer {
 
             case horizontal:
 
-                table.setCell(new Cell().addStyle(renderingStyle.getHeaderStyle()).setContent("ID"), row, col++);
-                table.setCell(new Cell().addStyle(renderingStyle.getHeaderStyle()).setContent("Name"), row, col++);
+                table.setCell(new Cell().setStyle(renderingStyle.getHeaderStyle()).setContent("ID"), row, col++);
+                table.setCell(new Cell().setStyle(renderingStyle.getHeaderStyle()).setContent("Name"), row, col++);
                 for (IType type : DataConfiguration.getInstance().get(One).values()) {
-                    table.setCell(new Cell().addStyle(renderingStyle.getHeaderStyle()).setContent(type.getTypeName()), row, col++);
+                    table.setCell(new Cell().setStyle(renderingStyle.getHeaderStyle()).setContent(type.getTypeName()), row, col++);
                 }
                 row++;
                 col = 0;
-                table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_ID)), row, col++);
-                table.setCell(new Cell().addStyle(cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
+                table.setCell(new Cell().setStyle(cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_ID)), row, col++);
+                table.setCell(new Cell().setStyle(cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
                 for (IType type : DataConfiguration.getInstance().get(One).values()) {
                     if (employee.get(type) != null) {
-                        table.setCell(new Cell().addStyle(cellLeft).setContent(employee.get(type)), row, col++);
+                        table.setCell(new Cell().setStyle(cellLeft).setContent(employee.get(type)), row, col++);
                     } else {
-                        table.setCell(new Cell().addStyle(cellLeft).setContent(UNDEFINED), row, col++);
+                        table.setCell(new Cell().setStyle(cellLeft).setContent(UNDEFINED), row, col++);
                     }
                 }
                 break;
