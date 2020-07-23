@@ -16,6 +16,7 @@ import org.ml.capman.DataConfiguration.TypeDimension;
 import static org.ml.capman.DataConfiguration.TypeDimension.One;
 
 import org.ml.capman.Employee;
+import org.ml.capman.EmployeeCapacity;
 import org.ml.capman.EmployeeData;
 import org.ml.capman.IType;
 import org.ml.capman.reporting.AbstractDirectTableDataStep;
@@ -79,7 +80,7 @@ public class TypeClusterView2D extends AbstractDirectTableDataStep {
         DataConfiguration configuration = DataConfiguration.getInstance();
 
         Map<String, TableData> tables = new TreeMap<>();
-        
+
         for (TypeDimension typeDimension1 : TypeDimension.values()) {
             for (String typeName1 : configuration.get(typeDimension1).keySet()) {
                 IType type1 = configuration.get(typeDimension1).get(typeName1);
@@ -129,7 +130,6 @@ public class TypeClusterView2D extends AbstractDirectTableDataStep {
 //        }
 //        return "clusterView_" + typeName2 + "_by_" + typeName1;
 //    }
-
     /**
      * @param employeeData
      * @param type1
@@ -183,7 +183,7 @@ public class TypeClusterView2D extends AbstractDirectTableDataStep {
         int row = 0;
         int col = 0;
         int numberOfTables = Math.min(3, maxPrimaryKey2);
-        int internalTableColumns = 1 + 2 * (2 + typesDelta);
+        int internalTableColumns = 1 + 2 * (2 + typesDelta) + 1;     // The last +1 came in through the EFTE column added
 
         int headerWidth = numberOfTables * (internalTableColumns + 1) - 1;
 
@@ -256,23 +256,35 @@ public class TypeClusterView2D extends AbstractDirectTableDataStep {
 
         //.... This may require generalization for other data types ... this just avoids empty headers
         int w1 = 2 + typesDelta;
-        int w2 = 1 + 2 * w1;
+        int w2 = 1 + 2 * w1 + 1;  // The last +1 came in through the EFTE column added
+
+        //.... Get the sum of the effective FTE and HC for the subtable employees
+        double totalEffectiveFTE = 0.0d;
+        double totalHC = 0.0d;
+        for (Employee employee : employees.get(primaryKey1).get(primaryKey2)) {
+            totalEffectiveFTE += employee.getCapacity(EmployeeCapacity.CapacityType.EffectiveFTE);
+            totalHC += employee.getCapacity(EmployeeCapacity.CapacityType.HC);
+        }
 
         //.... Header of subtable
+        int wInfo = 2;
         if (primaryKey2 instanceof String) {
             if (((String) primaryKey2).length() == 0) {
-                table.setCell(new Cell(1, w2).setStyle(cellLeftBold).setContent(UNASSIGNED), row++, col);
+                table.setCell(new Cell(1, w2 - 2 * wInfo).setStyle(cellLeftBold).setContent(UNASSIGNED), row, col);
             } else {
-                table.setCell(new Cell(1, w2).setStyle(cellLeftBold).setContent(primaryKey2), row++, col);
+                table.setCell(new Cell(1, w2 - 2 * wInfo).setStyle(cellLeftBold).setContent(primaryKey2), row, col);
             }
         } else {
-            table.setCell(new Cell(1, w2).setStyle(cellLeftBold).setContent(primaryKey2), row++, col);
+            table.setCell(new Cell(1, w2 - 2 * wInfo).setStyle(cellLeftBold).setContent(primaryKey2), row, col);
         }
+        table.setCell(new Cell(1, wInfo).setStyle(cellLeftBold).setContent("HC = " + String.format("%.2f", totalHC)), row, col + w2 - 2 * wInfo);
+        table.setCell(new Cell(1, wInfo).setStyle(cellLeftBold).setContent("EFTE = " + String.format("%.2f", totalEffectiveFTE)), row++, col + w2 - wInfo);
 
         //.... Columns of subtable        
         table.setCell(new Cell().setStyle(cellLeftLight).setContent("#"), row, col++);
         table.setCell(new Cell().setStyle(cellLeftLight).setContent("Employee"), row, col++);
         table.setCell(new Cell().setStyle(cellLeftLight).setContent("ID"), row, col++);
+        table.setCell(new Cell().setStyle(cellLeftLight).setContent("EFTE"), row, col++);
         for (IType type : outputTypes) {
             table.setCell(new Cell().setStyle(cellLeftLight).setContent(type.toString()), row, col++);
         }
@@ -289,6 +301,7 @@ public class TypeClusterView2D extends AbstractDirectTableDataStep {
             table.setCell(new Cell().setStyle(cellCenter).setContent(n++), row, col++);
             table.setCell(new Cell().setStyle(cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_NAME)), row, col++);
             table.setCell(new Cell().setStyle(cellLeft).setContent(employee.getUrl(Employee.EmployeeUrl.DATA_ID)), row, col++);
+            table.setCell(new Cell().setStyle(cellLeft).setContent(employee.getCapacity(EmployeeCapacity.CapacityType.EffectiveFTE)), row, col++);
             for (IType type : outputTypes) {
                 table.setCell(new Cell().setStyle(cellLeft).setContent(employee.get(type)), row, col++);
             }

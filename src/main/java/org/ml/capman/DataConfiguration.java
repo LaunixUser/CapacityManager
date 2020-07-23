@@ -19,8 +19,8 @@ import static org.ml.capman.DataConfiguration.TypeDimension.One;
  */
 public class DataConfiguration {
 
-    private Map<TypeDimension, Map<String, IType>> types = new HashMap<>();
-    private static DataConfiguration configuration = new DataConfiguration();
+    private final Map<TypeDimension, Map<String, IType>> types = new HashMap<>();
+    private static final DataConfiguration configuration = new DataConfiguration();
 
     /**
      * @author mlaux

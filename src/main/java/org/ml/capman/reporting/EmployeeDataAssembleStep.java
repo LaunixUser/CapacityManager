@@ -1,26 +1,4 @@
-/*
- * The MIT License
- *
- * Copyright 2019 Dr. Matthias Laux.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
+
 package org.ml.capman.reporting;
 
 import java.util.HashMap;
@@ -79,6 +57,9 @@ public class EmployeeDataAssembleStep extends AbstractTransferProcessStep<Map<St
         for (String key : employeeDataMap.keySet()) {
             LOGGER.log(Level.INFO, "employeeDataMap key = ''{0}'' - employeeData size = ''{1}", new Object[]{key, employeeDataMap.get(key).getEmployees().size()});
         }
+        if (employeeDataMap.isEmpty()) {
+            LOGGER.log(Level.SEVERE, "employeeDataMap is empty - something must be very wrong");
+        }
 
         EmployeeData<Employee> output;
 
@@ -93,7 +74,7 @@ public class EmployeeDataAssembleStep extends AbstractTransferProcessStep<Map<St
             for (String id : treeLinkData.getLinkData().keySet()) {
 
                 TreeLink treeLink = treeLinkData.getLinkData().get(id);
-                LOGGER.log(Level.INFO, "Working on treeLink: ''{0}''", treeLink.getSummary());
+                LOGGER.log(Level.INFO, "Working on treeLink: '{0}'", treeLink.getSummary());
 
                 String childNodeID = treeLink.getChildNodeID();
                 String parentNodeID = treeLink.getParentNodeID();

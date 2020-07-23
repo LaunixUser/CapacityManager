@@ -1,5 +1,5 @@
 /**
- * this assembles different elements with employee data (from different sources) into a single tree
+ * This assembles different elements with employee data (from different sources) into a single tree
  */
 package org.ml.capman;
 

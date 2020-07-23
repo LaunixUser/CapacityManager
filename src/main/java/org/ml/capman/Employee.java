@@ -13,7 +13,7 @@ import org.ml.table.content.UrlContent;
  */
 public class Employee extends DataContainer {
 
-    private String ID;
+    private final String ID;
     private final EmployeeCapacity capacity = new EmployeeCapacity();
     private boolean root = false;
     private Employee manager;
