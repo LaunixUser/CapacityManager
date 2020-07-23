@@ -49,7 +49,7 @@ public class Employee extends DataContainer {
         for (EmployeeUrl url : EmployeeUrl.values()) {
             urls.put(url, new UrlContent("", ID));
         }
-    }   
+    }
 
     /**
      * @return
@@ -225,6 +225,13 @@ public class Employee extends DataContainer {
             throw new IllegalArgumentException("manager may not be null");
         }
         this.manager = manager;
+    }
+
+    /**
+     *
+     */
+    public void clearManager() {
+        this.manager = null;
     }
 
     /**
