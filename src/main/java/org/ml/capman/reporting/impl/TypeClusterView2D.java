@@ -26,6 +26,8 @@ import static org.ml.capman.render.RenderingType.*;
 import org.ml.pf.output.TableData;
 import org.ml.table.Cell;
 import org.ml.table.Table;
+import org.ml.table.content.UrlAnchor;
+import org.ml.table.content.UrlContent;
 
 /**
  * @author mlaux
@@ -178,7 +180,6 @@ public class TypeClusterView2D extends AbstractDirectTableDataStep {
         //.... Create the output table
         Table table = new Table(1, 1);
         table.setGrow();
-        //      table.setRenderer(new SimpleVelocityRenderer());
 
         int row = 0;
         int col = 0;
@@ -187,19 +188,38 @@ public class TypeClusterView2D extends AbstractDirectTableDataStep {
 
         int headerWidth = numberOfTables * (internalTableColumns + 1) - 1;
 
+        //.... Overview of all the primary keys 1 for easier navigation
+        Map<Comparable, String> anchors = new HashMap<>();
+        int anchorIndex = 0;
+        for (Comparable primaryKey1 : primaryKeys1) {
+            String anchor = "anch" + String.valueOf(anchorIndex++);
+            anchors.put(primaryKey1, anchor);
+            if (primaryKey1 instanceof String) {
+                if (((String) primaryKey1).length() == 0) {
+                    table.setCell(new Cell(1, headerWidth).setContent(new UrlContent("#" + anchor, UNASSIGNED)), row++, col);
+                } else {
+                    table.setCell(new Cell(1, headerWidth).setContent(new UrlContent("#" + anchor, (String) primaryKey1)), row++, col);
+                }
+            } else {
+                table.setCell(new Cell(1, headerWidth).setContent(new UrlContent("#" + anchor, String.valueOf(primaryKey1))), row++, col);
+            }
+        }
+        table.setCell(new Cell(1, headerWidth), row++, col);
+
+        //.... the actual main table
         for (Comparable primaryKey1 : primaryKeys1) {
 
             //.... This may require generalization for other data types ... this just avoids empty headers
             if (primaryKey1 instanceof String) {
                 if (((String) primaryKey1).length() == 0) {
-                    table.setCell(new Cell(1, headerWidth).setStyle(cellLeftEmpty).setContent(UNASSIGNED), row++, col);
+                    table.setCell(new Cell(1, headerWidth).setStyle(cellLeftEmpty).setContent(new UrlAnchor(anchors.get(primaryKey1), UNASSIGNED)), row++, col);
                 } else {
-                    table.setCell(new Cell(1, headerWidth).setStyle(cellLeftEmpty).setContent(primaryKey1), row++, col);
+                    table.setCell(new Cell(1, headerWidth).setStyle(cellLeftEmpty).setContent(new UrlAnchor(anchors.get(primaryKey1), (String) primaryKey1)), row++, col);
                 }
             } else {
-                table.setCell(new Cell(1, headerWidth).setStyle(cellLeftEmpty).setContent(primaryKey1), row++, col);
+                table.setCell(new Cell(1, headerWidth).setStyle(cellLeftEmpty).setContent(new UrlAnchor(anchors.get(primaryKey1), String.valueOf(primaryKey1))), row++, col);
             }
-            table.setCell(new Cell(1, headerWidth).setStyle(cellLeftEmpty), row++, col);
+            //            table.setCell(new Cell(1, headerWidth).setStyle(cellLeftEmpty), row++, col);
             table.setCell(new Cell(1, headerWidth), row++, col);
 
             int tableCount = 0;

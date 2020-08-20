@@ -1,10 +1,10 @@
-
 package org.ml.capman.reporting;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.ml.capman.Constraint;
 
 import org.ml.tools.logging.LoggerFactory;
 import org.ml.capman.Employee;
@@ -74,7 +74,7 @@ public class EmployeeDataAssembleStep extends AbstractTransferProcessStep<Map<St
             for (String id : treeLinkData.getLinkData().keySet()) {
 
                 TreeLink treeLink = treeLinkData.getLinkData().get(id);
-                LOGGER.log(Level.INFO, "Working on treeLink: '{0}'", treeLink.getSummary());
+                LOGGER.log(Level.INFO, "Working on treeLink: ''{0}''", treeLink.getSummary());
 
                 String childNodeID = treeLink.getChildNodeID();
                 String parentNodeID = treeLink.getParentNodeID();
@@ -115,8 +115,8 @@ public class EmployeeDataAssembleStep extends AbstractTransferProcessStep<Map<St
                     parentEmployeeData.addEmployee(employee);
                 }
 
-                //.... Add any constraints
-                parentEmployeeData.addConstraintHandler(childEmployeeData.getConstraintHandler());
+                //.... Merge constraints
+                parentEmployeeData.mergeConstraintHandler(childEmployeeData.getConstraintHandler());
             }
 
             if (!employeeDataMap.containsKey(rootNodeID)) {

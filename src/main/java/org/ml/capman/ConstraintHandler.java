@@ -16,7 +16,7 @@ public class ConstraintHandler {
     private final static Logger LOGGER = LoggerFactory.getLogger(ConstraintHandler.class.getName());
 
     private final Set<Constraint> constraints = new HashSet<>();
-    private Map<String, Set<String>> mappings = new HashMap<>();
+    private final Map<String, Set<String>> mappings = new HashMap<>();
 
     /**
      *

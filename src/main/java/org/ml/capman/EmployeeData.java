@@ -38,11 +38,28 @@ public class EmployeeData<EMP extends Employee> {
      *
      * @param constraintHandler
      */
-    public void addConstraintHandler(ConstraintHandler constraintHandler) {
+    public void setConstraintHandler(ConstraintHandler constraintHandler) {
         if (constraintHandler == null) {
             throw new IllegalArgumentException("constraintHandler may not be null");
         }
-        this.constraintHandler = new ConstraintHandler(constraintHandler);
+        this.constraintHandler = constraintHandler;
+    }
+
+    /**
+     *
+     * @param constraintHandler
+     */
+    public void mergeConstraintHandler(ConstraintHandler constraintHandler) {
+        if (constraintHandler == null) {
+            throw new IllegalArgumentException("constraintHandler may not be null");
+        }
+        if (this.constraintHandler == null) {
+            this.constraintHandler = constraintHandler;
+        } else {
+            for (Constraint constraint : constraintHandler.getConstraints()) {
+                this.constraintHandler.addConstraint(constraint);
+            }
+        }
     }
 
     /**
