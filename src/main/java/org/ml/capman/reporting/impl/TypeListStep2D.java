@@ -89,13 +89,13 @@ public class TypeListStep2D extends AbstractDirectTableDataStep {
                                 if (!configuration.isEqual(type1, type2)) {
                                     TableData tableData = new TableData(propertyManager);
                                     if (setContext.length() > 0) {
-                                        tableData.setTableHeader("Employees by " + typeName1 + " and " + typeName2 + " (Data Context: " + setContext + ")");
+                                        tableData.setTableHeader("Employees for " + typeName2 + " by " + typeName1 + " (Data Context: " + setContext + ")");
                                     } else {
-                                        tableData.setTableHeader("Employees by " + typeName1 + " and " + typeName2);
+                                        tableData.setTableHeader("Employees for " + typeName2 + " by " + typeName1);
                                     }
                                     tableData.addTable("tableBody", createTable(employeeData, type1, type2));
-                                    tableData.setDescription("Employees by type " + typeName1 + " and " + typeName2);
-                                    tables.put("employeeList2D_" + typeName1 + "_by_" + typeName2, tableData);
+                                    tableData.setDescription("Employees " + typeName2 + " by " + typeName1);
+                                    tables.put("employeeList2D_" + typeName2 + "_by_" + typeName1, tableData);
                                 }
                             }
                         }

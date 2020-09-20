@@ -80,7 +80,7 @@ public class TypeSummaryStep2D extends AbstractDirectTableDataStep {
                                         tableData.setTableHeader("Capacity for " + typeName2 + " by " + typeName1);
                                     }
                                     tableData.addTable("tableBody", createTable(employeeData, type1, type2));
-                                    tableData.setDescription("Type " + typeName2 + " by " + typeName1);
+                                    tableData.setDescription("Capacity " + typeName2 + " by " + typeName1);
                                     tables.put("typeSummary2D_" + typeName2 + "_by_" + typeName1, tableData);
                                 }
                             }
