@@ -316,7 +316,7 @@ public class OrgaStep extends AbstractDirectTableDataStep {
         }
         Cell cell = new Cell(1, 1);
         cell.setContent(ContentType.country, employee.get(dataConfiguration.get(propertyManager.getProperty(RequiredKey.typeCountry), TypeDimension.One)));
-        cell.setStyle(t.toString());
+        cell.setStyle(t);
         return cell;
     }
 
@@ -333,7 +333,7 @@ public class OrgaStep extends AbstractDirectTableDataStep {
         }
         Cell cell = new Cell(1, 1);
         cell.setContent(ContentType.fte, String.format("%.2f", employee.getCapacity(CapacityType.FTE)));
-        cell.setStyle(t.toString());
+        cell.setStyle(t);
         return cell;
     }
 
@@ -357,7 +357,7 @@ public class OrgaStep extends AbstractDirectTableDataStep {
         cell.setContent(ContentType.orgsize, s + "/" + shc);
 
         //... Set the cell style
-        cell.setStyle(t.toString());
+        cell.setStyle(t);
 
         if (employee.is(dataConfiguration.get(propertyManager.getProperty(RequiredKey.typeVacancy), TypeDimension.One))) {
             if (t.equals(employeeOrgsize)) {
@@ -392,7 +392,7 @@ public class OrgaStep extends AbstractDirectTableDataStep {
         }
         Cell cell = new Cell(1, 1);
         cell.setContent(ContentType.location, employee.get(dataConfiguration.get(propertyManager.getProperty(RequiredKey.typeLocation), TypeDimension.One)));
-        cell.setStyle(t.toString());
+        cell.setStyle(t);
         return cell;
     }
 
