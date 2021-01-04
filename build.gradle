@@ -15,6 +15,6 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile (
         [group: 'org.ml', name: 'process-framework', version: '[2.0.1,)'],
-         [group: 'org.ml', name: 'launix-tools', version: '[2.1,)']
+        [group: 'org.ml', name: 'launix-tools', version: '[3.0,)']
     )
 }
